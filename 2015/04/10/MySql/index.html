@@ -1,0 +1,793 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MySql | 滴水</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dishui">
+    
+
+    
+    <meta name="description" content="[TOC]
+MYSQL安装
+安装位置有两个.
+数据库服务位置: MySQL Server数据库数据文件位置: Server data files
+UTF-8 在数据库中,叫utf8;
+MYSQL中预设管理员名称为 rootSQL
+DDL  Data Definition Language  || create alter drop
+DML  Data Manipulation Language |">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql">
+<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/10/MySql/index.html">
+<meta property="og:site_name" content="滴水">
+<meta property="og:description" content="[TOC]
+MYSQL安装
+安装位置有两个.
+数据库服务位置: MySQL Server数据库数据文件位置: Server data files
+UTF-8 在数据库中,叫utf8;
+MYSQL中预设管理员名称为 rootSQL
+DDL  Data Definition Language  || create alter drop
+DML  Data Manipulation Language |">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySql">
+<meta name="twitter:description" content="[TOC]
+MYSQL安装
+安装位置有两个.
+数据库服务位置: MySQL Server数据库数据文件位置: Server data files
+UTF-8 在数据库中,叫utf8;
+MYSQL中预设管理员名称为 rootSQL
+DDL  Data Definition Language  || create alter drop
+DML  Data Manipulation Language |">
+
+    
+    <link rel="alternative" href="/atom.xml" title="滴水" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="滴水" title="滴水"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="滴水">滴水</a></h1>
+				<h2 class="blog-motto">点滴知识</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">分类</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.zhoukai.xyz">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/10/MySql/" title="MySql" itemprop="url">MySql</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://blog.zhoukai.xyz/about" title="dishui" target="_blank" itemprop="author">dishui</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-10T02:58:34.000Z" itemprop="datePublished"> 发表于 2015-04-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MYSQL中预设管理员名称为_root"><span class="toc-number">1.</span> <span class="toc-text">MYSQL中预设管理员名称为 root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DDL_数据库定义语言(库的操作)"><span class="toc-number">2.</span> <span class="toc-text">DDL 数据库定义语言(库的操作)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库中的数据类型"><span class="toc-number">2.1.</span> <span class="toc-text">数据库中的数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与创建表相关的语句(DDL)_(记住,能够手写)"><span class="toc-number">2.2.</span> <span class="toc-text">与创建表相关的语句(DDL) (记住,能够手写)</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>[TOC]</p>
+<p>MYSQL安装</p>
+<p>安装位置有两个.</p>
+<p>数据库服务位置: MySQL Server<br>数据库数据文件位置: Server data files</p>
+<p>UTF-8 在数据库中,叫utf8;</p>
+<h2 id="MYSQL中预设管理员名称为_root">MYSQL中预设管理员名称为 root</h2><p>SQL</p>
+<pre><code>DDL  Data Definition Language  || <span class="operator"><span class="keyword">create</span> <span class="keyword">alter</span> <span class="keyword">drop</span>
+DML  <span class="keyword">Data</span> Manipulation <span class="keyword">Language</span> || <span class="keyword">insert</span> <span class="keyword">update</span> <span class="keyword">delete</span> 
+DCL  <span class="keyword">Data</span> Control <span class="keyword">Language</span> || <span class="keyword">grant</span> <span class="keyword">rollback</span> <span class="keyword">commit</span>.
+DQL  <span class="keyword">Data</span> <span class="keyword">Query</span> <span class="keyword">Language</span> || <span class="keyword">select</span></span>
+</code></pre><p>连接数据库服务的命令</p>
+<p><code>mysql -u root -p</code><br>根据提示输入密码 ,即可建立连接.</p>
+<hr>
+<h2 id="DDL_数据库定义语言(库的操作)">DDL 数据库定义语言(库的操作)</h2><p>1.创建一个库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> day15 <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_bin;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>2.显示mysql中都有哪些库了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">show</span> <span class="keyword">databases</span>;</span></span><br></pre></td></tr></table></figure>
+<p>3.删除一个数据库<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">drop</span> <span class="keyword">database</span> day15;</span></span><br></pre></td></tr></table></figure></p>
+<p>4.修改数据库码表和字符校对</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">alter</span> <span class="keyword">database</span> day15 <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_bin;</span></span><br></pre></td></tr></table></figure>
+<p>5.当前要使用的库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> day15;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="数据库中的数据类型">数据库中的数据类型</h3><p><span class="d_green">ps</span>:了解,知道在什么情况下应该使用什么类型的数据</p>
+<pre><code>数字型
+    整型
+        TINYINT    <span class="number">1</span>字节    <span class="built_in">byte</span>
+        SMALLINT   <span class="number">2</span>字节    <span class="built_in">short</span>
+        MEDIUMINT  <span class="number">3</span>字节    
+        **INT        <span class="number">4</span>字节    int
+        BIGINT     <span class="number">8</span>字节  <span class="built_in">long</span>
+    浮点型
+        FLOAT   单精度<span class="number">4</span>字节  float
+        <span class="built_in">DOUBLE</span>  <span class="number">8</span>字节      <span class="built_in">double</span>
+        <span class="built_in">DECIMAL</span> 没有精度损失 根钱相关的数值.
+------------------------------------------------        
+字符串类型  
+    注意: 字符串类型要使用单引号包裹.
+    短字符串类型
+        <span class="built_in">CHAR</span>/VARCHAR  (最大长度<span class="number">255</span>字节)        <span class="built_in">String</span>
+------------------------------------------------        
+长字符串类型
+    <span class="keyword">TEXT</span>      保存文本(字符流) --&gt; 当要保存的内容超过<span class="number">255</span>字节时使用.  Writer
+    BLOB      保存字节(字节流) --&gt; 开发中用不到      Stream
+
+日期和时间类型
+    <span class="built_in">date</span>   只记录日期    <span class="number">1998</span>-<span class="number">07</span>-<span class="number">01</span>
+    time   只记录时间    <span class="number">14</span>:<span class="number">30</span>:<span class="number">00</span>
+    year   只记录年      <span class="number">2014</span>
+    datatime  又记录日期 又记录 时间    <span class="number">1998</span>-<span class="number">07</span>-<span class="number">01</span> <span class="number">14</span>:<span class="number">30</span>:<span class="number">00</span>
+    **timestamp 同上 <span class="number">1998</span>-<span class="number">07</span>-<span class="number">01</span> <span class="number">14</span>:<span class="number">30</span>:<span class="number">00</span>  
+</code></pre><p><span class="d_red">问题1</span>:以上两种 有什么区别?</p>
+<pre><code><span class="function"><span class="title">char</span><span class="params">(定长字符串)</span></span>,<span class="function"><span class="title">varchar</span><span class="params">(变长字符串)</span></span>.
+加入为char类型的指定数据长度为<span class="number">20</span>. <span class="string">"abc"</span> ==&gt;  <span class="string">"abc                          "</span>
+加入varchar类型指定长度为<span class="number">20</span>, <span class="string">"abc"</span> ==&gt; <span class="string">"abc"</span>
+</code></pre><p><span class="d_red">问题2</span> datatime 和 timestamp 的区别?</p>
+<pre><code>在保存上将,记录的内容是一样的.
+区别在于保存数据时, timestamp 可以不指定值, 那么系统会自动使用当前时间作为值.
+datatime 在保存时如果不指定 值, 那么将会插入一个null.
+所以开发中timestamp使用较多.
+</code></pre><hr>
+<h3 id="与创建表相关的语句(DDL)_(记住,能够手写)"><span class="d_red">与创建表相关的语句(DDL)</span> (记住,能够手写)</h3><pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name
+(
+    field1  datatype  约束/主键约束 auto_increment,
+    field2  datatype  约束,
+    field3  datatype  约束
+)<span class="built_in">character</span> <span class="keyword">set</span> 字符集 <span class="keyword">collate</span> 校对规则</span>
+</code></pre><p>1.创建表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">table</span> t_user(</span><br><span class="line">    <span class="built_in">number</span> <span class="built_in">int</span>  <span class="keyword">primary</span> <span class="keyword">key</span>,</span><br><span class="line">    name <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">unique</span>,</span><br><span class="line">    <span class="keyword">password</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    sex  <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    email <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">unique</span></span><br><span class="line">);</span></span><br></pre></td></tr></table></figure></p>
+<p>2.查看当前库中有哪些表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">show</span> <span class="keyword">tables</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p>3.查看表的结构</p>
+<pre><code><span class="keyword">desc</span> 表名;
+</code></pre><blockquote>
+<p>+—————+——————-+———+——-+————-+———-+<br>| Field    | Type        | Null | Key | Default | Extra |<br>+—————+——————-+———+——-+————-+———-+<br>| number   | int(11)     | YES  |     | NULL    |       |<br>| name     | varchar(10) | YES  |     | NULL    |       |<br>| password | varchar(20) | YES  |     | NULL    |       |<br>| sex      | varchar(6)  | YES  |     | NULL    |       |<br>| email    | varchar(30) | YES  |     | NULL    |       |<br>+—————+——————-+———+——-+————-+———-+</p>
+</blockquote>
+<ul>
+<li>删除表</li>
+</ul>
+<p>drop table 表名;</p>
+<ul>
+<li><p>添加一列</p>
+<p>  alter table 表名 add 列名 类型;</p>
+<p>  alter table t_user add salary double;</p>
+</li>
+<li><p>修改列的类型</p>
+<p>  alter table 表名 modify 列名 类型;</p>
+<p>  alter table t_user modify sex char(6);</p>
+</li>
+<li><p>修改列的名称</p>
+<p>  alter table 表名 change  [column] old_col_name column_definition;</p>
+<p>  alter table t_user change name firstname varchar(10);</p>
+</li>
+<li><p>删除某列</p>
+<p>  alter table 表名 drop 列名;</p>
+<p>  alter table t_user drop email;</p>
+</li>
+</ul>
+<p>9.修改表的名称</p>
+<pre><code><span class="operator"><span class="keyword">rename</span> <span class="keyword">table</span> 旧表名 <span class="keyword">to</span> 新名;</span>
+
+<span class="operator"><span class="keyword">rename</span> <span class="keyword">table</span> t_user <span class="keyword">to</span> t_student;</span>
+</code></pre><p>10(用的少)修改表的字符集. (如果创建表时不指定,默认使用数据库的字符集)</p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="built_in">character</span> <span class="keyword">set</span> 字符集 <span class="keyword">collate</span> 校对集;</span>
+
+<span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> t_student  <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_bin;</span>
+</code></pre><p>//————————————————————————————————————————————————-<br>列的约束 (掌握)   </p>
+<pre><code>1.非空约束(not null)  指定非空约束的列, 在插入记录时 必须包含值.
+2.唯一约束(unique)  该列的内容在表中. 值是唯一的.
+3.主键约束(primary key)  当想要把某一列的值,作为该列的唯一标示符时,可以指定主键约束(包含 非空约束和唯一约束). 一个表中只能指定一个主键约束列.
+                主键约束 , 可以理解为 非空+唯一. 并且一张表中只能有一个主键约束.
+
+约束体现数据库的完整性.
+
+例如:创建带有约束的表
+    <span class="operator"><span class="keyword">create</span> <span class="keyword">table</span> t_student (
+        <span class="built_in">number</span> <span class="built_in">int</span>(<span class="number">4</span>) <span class="keyword">primary</span> <span class="keyword">key</span>,
+        name <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">unique</span>,
+        sex <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,
+        age <span class="built_in">int</span>(<span class="number">3</span>) <span class="keyword">not</span> <span class="literal">null</span>
+    )</span>
+</code></pre><p>//——————————————————————————————————————————————————————————————<br>主键自动增长 (掌握) (只在mysql 和 sql server中有该特性.)<br>    关键字: auto_increment<br>    首先主键自动增长只能用于整型数字的列.<br>    当使用该功能时, 在插入记录时, 无需对指定主键自增的列插入值. 数据库会默认为该列指定值, 指定的规则就是递增.<br>    1 , 2 ,3 ….<br>    注意: 该功能是mysql的功能,sql server 中也有. 其他数据库不具备该功能;</p>
+<pre><code>例子: 创建 主键自增长列的表
+
+<span class="operator"><span class="keyword">create</span> <span class="keyword">table</span> t_user(
+    id <span class="built_in">int</span> <span class="keyword">primary</span> <span class="keyword">key</span> auto_increment,
+    name <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,
+    email <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">unique</span>
+)</span>
+</code></pre><p>//————————————————创建修改表练习—————————————————————————-</p>
+<p>CREATE TABLE employee (<br>   id INT(10),<br>   NAME VARCHAR(10),<br>   gender VARCHAR(10),<br>   birthday DATETIME,<br>   entry_date TIMESTAMP,<br>   job VARCHAR(5),<br>   salary DOUBLE(5,3),<br>   RESUME TEXT<br>);</p>
+<p>1在上面员工表的基础上增加一个image列。</p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> employee <span class="keyword">add</span> image <span class="built_in">blob</span>;</span>
+</code></pre><p>2修改job列，使其长度为60。</p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> employee modify job <span class="built_in">VARCHAR</span>(<span class="number">60</span>);</span>
+</code></pre><p>3删除gender列。</p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> employee <span class="keyword">drop</span> gender;</span>
+</code></pre><p>4表名改为user。</p>
+<pre><code><span class="operator"><span class="keyword">rename</span> <span class="keyword">table</span> employee <span class="keyword">to</span> <span class="keyword">user</span>;</span>
+</code></pre><p>5修改表的字符集为utf8</p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="built_in">character</span> <span class="keyword">set</span> utf8 ;</span>
+</code></pre><p>6列名name修改为username</p>
+<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">change</span> name username <span class="built_in">varchar</span>(<span class="number">10</span>);</span>
+</code></pre><p>//—————————————————对表中数据的增删改—————————————————————————————————-<br>create table t_user(<br>        id int primary key auto_increment,<br>        name varchar(20) not null,<br>        email varchar(20) unique<br>    )<br>//————————————————————-</p>
+<p>为表添加记录 (必须掌握)</p>
+<p>insert into 表名[(列名1,列名2…)] values (值1,值2…);</p>
+<p>1.插入一条数据</p>
+<pre><code><span class="number">1</span>&gt;指定要插入那些列
+    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span><span class="params">(id,name,email)</span> <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'tom'</span>,<span class="string">'tom@itcast.cn'</span>)</span></span>; 
+    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span><span class="params">(id,email)</span> <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'tom2@itcast.cn'</span>)</span></span>; 实验非空约束
+    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span><span class="params">(id,name,email)</span> <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'jerry'</span>,<span class="string">'tom@itcast.cn'</span>)</span></span>; 实验唯一约束
+<span class="number">2</span>&gt;不指定插入哪些列, 需要指定每一列的值
+    <span class="function">insert <span class="keyword">into</span> t_user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'jack'</span>,<span class="string">'jack@itcast.cn'</span>)</span></span>; 
+    <span class="function">insert <span class="keyword">into</span> t_user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'肉丝'</span>,<span class="string">'rose@itcast.cn'</span>)</span></span>; 
+</code></pre><p> SHOW VARIABLES LIKE ‘%character%’;    ==&gt; 查看字符编码配置</p>
+<p>| character_set_client     | gbk   客户端的编码<br>           |<br>| character_set_connection | utf8   客户端连接的编码<br>           |<br>| character_set_database   | utf8   数据库默认使用的编码<br>           |<br>| character_set_filesystem | BINARY  文件系统存放时使用的编码<br>           |<br>| character_set_results    | gbk    结果集的编码<br>           |<br>| character_set_server     | utf8    服务器编码<br>           |<br>| character_set_system     | utf8    内部系统编码</p>
+<p>结论:     如果使用cmd 命令控制台操作 数据库,<br>注意character_set_client 和  character_set_results  需要设置成GBK, 因为我们的命令控制航使用gbk码表显示中文.<br>使用如下命令设置:<br>方式1: 每次重新连接数据库都要重新设置.<br>set  character_set_client=gbk<br>set  character_set_results=gbk<br>方式2: 永久性修改 (不推荐)<br>修改my.ini<br>    C:\Program Files (x86)\MySQL\MySQL Server 5.5\my.ini<br>修改<br>        [client]</p>
+<pre><code>    <span class="keyword">port</span>=<span class="number">3306</span>
+
+    [mysql]
+    <span class="keyword">default</span>-<span class="typename">character</span>-set=gbk
+但是使用方式<span class="number">2</span> 修改, 会造成 整个数据库 在连接客户端时 使用的编码 都为gbk.(一劳永逸).影响范围比较大
+而相比方式<span class="number">1</span>, 每次修改仅仅影响的是当前的连接. 只在当前连接内有效.
+</code></pre><p>//—————————————————————————————————————</p>
+<p>修改一条记录 (必须掌握)</p>
+<pre><code>update 表名 <span class="built_in">set</span> 列名<span class="number">1</span> <span class="subst">=</span> 值 , 列名<span class="number">2</span> <span class="subst">=</span> 值 <span class="attribute">...</span><span class="built_in">.</span><span class="preprocessor">[</span><span class="keyword">where</span> 条件<span class="number">1</span>,条件<span class="number">2.</span><span class="built_in">..</span><span class="preprocessor">]</span><span class="markup"></span>
+</code></pre><p>1.修改表中id为3 的记录, 将name修改为rose;</p>
+<pre><code><span class="operator"><span class="keyword">update</span> t_user <span class="keyword">set</span> name=<span class="string">'rose'</span> <span class="keyword">where</span> id=<span class="number">3</span>;</span>
+</code></pre><p>错误:  在修改的时候 不要忘记填写修改的条件, 不然将修改整张表的数据.</p>
+<pre><code><span class="operator"><span class="keyword">update</span> t_user <span class="keyword">set</span> name=<span class="string">'rose'</span>;</span>
+</code></pre><p>//——————————————————————————————————————————————————-<br>    create table employee (<br>   id int,<br>   name varchar(20),<br>   gender varchar(20),<br>   birthday date,<br>   entry_date date,<br>   job varchar(30),<br>   salary double,<br>   resume longtext<br>);</p>
+<p>insert into employee values(1,’zs’,’male’,’1980-12-12’,’2000-12-12’,’coder’,4000,null);<br>insert into employee values(2,’ls’,’male’,’1983-10-01’,’2010-12-12’,’master’,7000,null);<br>insert into employee values(3,’ww’,’female’,’1985-03-08’,’2008-08-08’,’teacher’,2000,null);<br>insert into employee values(4,’wu’,’male’,’1986-05-13’,’2012-12-22’,’hr’,3000,null);    </p>
+<p>要求<br>将所有员工薪水修改为5000元。</p>
+<pre><code><span class="operator"><span class="keyword">update</span> employee <span class="keyword">set</span> salary=<span class="number">5000</span> ;</span>
+</code></pre><p>将姓名为’zs’的员工薪水修改为3000元。</p>
+<pre><code><span class="operator"><span class="keyword">update</span> employee <span class="keyword">set</span> salary=<span class="number">3000</span> <span class="keyword">where</span> name=<span class="string">'zs'</span>;</span>
+</code></pre><p>将姓名为’ls’的员工薪水修改为4000元,job改为ccc。</p>
+<pre><code><span class="operator"><span class="keyword">update</span> employee <span class="keyword">set</span> salary=<span class="number">4000</span>, job = <span class="string">'ccc'</span> <span class="keyword">where</span> name=<span class="string">'ls'</span>;</span>
+</code></pre><p>将wu的薪水在原有基础上增加1000元。</p>
+<pre><code><span class="operator"><span class="keyword">update</span> employee <span class="keyword">set</span> salary = salary+<span class="number">1000</span> <span class="keyword">where</span> name=<span class="string">'wu'</span>;</span>
+</code></pre><p>//——————删除表记录相关——————————————————————————————————————————————————————-<br>删除记录语句 (必须掌握)</p>
+<p>DELETE FROM   表名  WHERE 条件</p>
+<p>删除表中名称为’zs’的记录。</p>
+<pre><code><span class="operator"><span class="keyword">delete</span> <span class="keyword">from</span> employee <span class="keyword">where</span> name = <span class="string">'zs'</span>;</span>
+</code></pre><p>删除表中所有记录。</p>
+<pre><code><span class="operator"><span class="keyword">delete</span> <span class="keyword">from</span> employee;</span>
+</code></pre><p>使用truncate删除表中记录。</p>
+<pre><code><span class="operator"><span class="keyword">truncate</span> <span class="keyword">table</span> employee;</span> 
+</code></pre><p>DELETE 删除 和 TRUNCATE删除(了解) 两者有什么区别?</p>
+<pre><code>1. 功能上来讲 <span class="operator"><span class="keyword">truncate</span>  和 <span class="keyword">delete</span> <span class="keyword">from</span> employee;</span> 是一样的,都是将表中所有数据都删除.
+
+2.delete可以看做是将表中的数据逐行标记为删除. 
+  <span class="operator"><span class="keyword">truncate</span> 直接将表内容表结构 一系列都物理删除. 然后重新创建表结构.
+<span class="number">3.</span> <span class="keyword">delete</span> 属于 DML语句.
+   <span class="keyword">truncate</span> 属于 DDL语句.
+<span class="number">4.</span> <span class="keyword">delete</span>删除数据可以恢复,但是删除不能释放硬盘空间.
+    <span class="keyword">truncate</span> 不能恢复.可以释放硬盘空间.</span>
+</code></pre><p>//————————————-以上就是 增加 修改 删除 表记录 相关语句 ,(DML)—————————————————————————————-</p>
+<p>//—————————————————————————————————————————————————————————————————</p>
+<p>DQL语句(DML) 查询语句.  (必须掌握)</p>
+<p>语法：<br>  SELECT selection_list /<em>要查询的列名称</em>/<br>  FROM table_list /<em>要查询的表名称</em>/<br>  WHERE condition /<em>行条件</em>/<br>  GROUP BY grouping_columns /<em>对结果分组</em>/<br>  HAVING condition /<em>分组后的行条件</em>/<br>  ORDER BY sorting_columns /<em>对结果分组</em>/<br>  LIMIT offset_start, row_count /<em>结果限定</em>/</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> stu (</span><br><span class="line">    sid <span class="built_in">CHAR</span>(<span class="number">6</span>),</span><br><span class="line">    sname       <span class="built_in">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    age     <span class="built_in">INT</span>,</span><br><span class="line">    gender  <span class="built_in">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1001'</span>, <span class="string">'liuYi'</span>, <span class="number">35</span>, <span class="string">'male'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1002'</span>, <span class="string">'chenEr'</span>, <span class="number">15</span>, <span class="string">'female'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1003'</span>, <span class="string">'zhangSan'</span>, <span class="number">95</span>, <span class="string">'male'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1004'</span>, <span class="string">'liSi'</span>, <span class="number">65</span>, <span class="string">'female'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1005'</span>, <span class="string">'wangWu'</span>, <span class="number">55</span>, <span class="string">'male'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1006'</span>, <span class="string">'zhaoLiu'</span>, <span class="number">75</span>, <span class="string">'female'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1007'</span>, <span class="string">'sunQi'</span>, <span class="number">25</span>, <span class="string">'male'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1008'</span>, <span class="string">'zhouBa'</span>, <span class="number">45</span>, <span class="string">'female'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1009'</span>, <span class="string">'wuJiu'</span>, <span class="number">85</span>, <span class="string">'male'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1010'</span>, <span class="string">'zhengShi'</span>, <span class="number">5</span>, <span class="string">'female'</span>);</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu <span class="keyword">VALUES</span>(<span class="string">'S_1011'</span>, <span class="string">'xxx'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span></span><br><span class="line">//<span class="comment">---------------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+<p>CREATE TABLE emp(<br>    empno       INT,<br>    ename       VARCHAR(50),<br>    job     VARCHAR(50),<br>    mgr     INT,<br>    hiredate    DATE,<br>    sal     DECIMAL(7,2),<br>    comm        DECIMAL(7,2),<br>    deptno      INT<br>);<br>INSERT INTO emp VALUES(7369,’SMITH’,’CLERK’,7902,’1980-12-17’,800,NULL,20);<br>INSERT INTO emp VALUES(7499,’ALLEN’,’SALESMAN’,7698,’1981-02-20’,1600,300,30);<br>INSERT INTO emp VALUES(7521,’WARD’,’SALESMAN’,7698,’1981-02-22’,1250,500,30);<br>INSERT INTO emp VALUES(7566,’JONES’,’MANAGER’,7839,’1981-04-02’,2975,NULL,20);<br>INSERT INTO emp VALUES(7654,’MARTIN’,’SALESMAN’,7698,’1981-09-28’,1250,1400,30);<br>INSERT INTO emp VALUES(7698,’BLAKE’,’MANAGER’,7839,’1981-05-01’,2850,NULL,30);<br>INSERT INTO emp VALUES(7782,’CLARK’,’MANAGER’,7839,’1981-06-09’,2450,NULL,10);<br>INSERT INTO emp VALUES(7788,’SCOTT’,’ANALYST’,7566,’1987-04-19’,3000,NULL,20);<br>INSERT INTO emp VALUES(7839,’KING’,’PRESIDENT’,NULL,’1981-11-17’,5000,NULL,10);<br>INSERT INTO emp VALUES(7844,’TURNER’,’SALESMAN’,7698,’1981-09-08’,1500,0,30);<br>INSERT INTO emp VALUES(7876,’ADAMS’,’CLERK’,7788,’1987-05-23’,1100,NULL,20);<br>INSERT INTO emp VALUES(7900,’JAMES’,’CLERK’,7698,’1981-12-03’,950,NULL,30);<br>INSERT INTO emp VALUES(7902,’FORD’,’ANALYST’,7566,’1981-12-03’,3000,NULL,20);<br>INSERT INTO emp VALUES(7934,’MILLER’,’CLERK’,7782,’1982-01-23’,1300,NULL,10);</p>
+<p>CREATE TABLE dept(<br>    deptno      INT,<br>    dname       VARCHAR(14),<br>    loc     VARCHAR(13)<br>);</p>
+<p>INSERT INTO dept VALUES(10, ‘ACCOUNTING’, ‘NEW YORK’);<br>INSERT INTO dept VALUES(20, ‘RESEARCH’, ‘DALLAS’);<br>INSERT INTO dept VALUES(30, ‘SALES’, ‘CHICAGO’);<br>INSERT INTO dept VALUES(40, ‘OPERATIONS’, ‘BOSTON’);</p>
+<p>1.1　查询所有列 </p>
+<p>select <em> from stu;<br>select sid, sname, age, gender from stu;<br>使用</em> 相当于 查看所有列. 使用* 时,效率要比 输入指定列要低.  </p>
+<p>1.2　查询指定列</p>
+<p>select sid, sname, age, gender from stu;</p>
+<p>2.1　条件查询介绍<br>条件查询就是在查询时给出WHERE子句，在WHERE子句中可以使用如下运算符及关键字：<br>    ?   =、!=、&lt;&gt;、&lt;、&lt;=、&gt;、&gt;=；<br>    ?   BETWEEN…AND；<br>    ?   IN(SET)；<br>    ?   IS NULL；<br>    ?   AND；<br>    ?   OR；<br>    ?   NOT；<br>2.2　查询性别为女，并且年龄小于50的记录</p>
+<pre><code><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> gender=<span class="string">'female'</span> <span class="keyword">and</span> age &lt; <span class="number">50</span>;</span>
+</code></pre><p>2.3　查询学号为S_1001，或者姓名为liSi的记录</p>
+<pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sid = <span class="string">'S_1001'</span> <span class="keyword">or</span> sname=<span class="string">'liSi'</span>;</span>
+
+数据库中,sql语句不区分大小写 ,但是 数据区分大小写.
+</code></pre><p>2.4 查询学号为S_1001，S_1002，S_1003的记录</p>
+<pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sid = <span class="string">'S_1001'</span> <span class="keyword">or</span> sid = <span class="string">'S_1002'</span> <span class="keyword">or</span> sid = <span class="string">'S_1003'</span>;</span>
+
+<span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sid <span class="keyword">in</span> (<span class="string">'S_1001'</span>,<span class="string">'S_1002'</span>,<span class="string">'S_1003'</span>);</span>
+
+以上两个语句一模一样,仅仅是写法的区别.使用运算符不同.
+</code></pre><p>2.5　查询学号不是S_1001，S_1002，S_1003的记录</p>
+<pre><code><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sid <span class="keyword">not</span> <span class="keyword">in</span> (<span class="string">'S_1001'</span>,<span class="string">'S_1002'</span>,<span class="string">'S_1003'</span>);</span>
+
+<span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> <span class="keyword">not</span> (sid = <span class="string">'S_1001'</span> <span class="keyword">or</span> sid = <span class="string">'S_1002'</span> <span class="keyword">or</span> sid = <span class="string">'S_1003'</span>);</span>
+</code></pre><p>2.6　查询年龄为null的记录  </p>
+<pre><code>SELECT * <span class="keyword">from</span> stu <span class="keyword">where</span>  age = <span class="keyword">null</span>;
+
+注意: 数据库中, <span class="keyword">null</span>不等于 <span class="keyword">null</span>;
+</code></pre><p>   SELECT * from stu where  age is null;</p>
+<p>   使用”is” 判断即可.</p>
+<p>2.7 查询年龄在20到40之间的学生记录</p>
+<pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> age <span class="keyword">between</span> <span class="number">20</span> <span class="keyword">and</span> <span class="number">40</span>;</span>
+</code></pre><p>2.8查询性别非男的学生记录</p>
+<pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> <span class="keyword">not</span> gender = <span class="string">'male'</span>;</span> 
+<span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span>  gender != <span class="string">'male'</span>;</span> 
+<span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span>  gender &lt;&gt; <span class="string">'male'</span>;</span> 
+<span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span>  gender <span class="keyword">not</span> <span class="keyword">in</span> (<span class="string">'male'</span>);</span> 
+</code></pre><p>2.9 查询姓名不为null的学生记录</p>
+<pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sname <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</span>
+</code></pre><p>//—————————————————————————————————————————————————<br>where 字段 like ‘表达式’;<br>% =&gt; 通配 通配任意个字符.<br><em> =&gt; 通配 通配单个字符.<br>说明: LIKE 条件后 根模糊查询表达式,  “</em>“==&gt; 代表一个任意字符</p>
+<p>3.1查询姓名由5个字母构成的学生记录</p>
+<pre><code><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sname <span class="keyword">like</span> <span class="string">'_____'</span>;</span>
+</code></pre><p>3.2查询姓名由5个字母构成，并且第5个字母为“i”的学生记录</p>
+<pre><code><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sname <span class="keyword">like</span> <span class="string">'____i'</span>;</span>
+</code></pre><p>3.3 查询姓名以“z”开头的学生记录<br>说明: “%”该通配符匹配任意长度的字符.</p>
+<p>select * from stu where sname like ‘z%’;</p>
+<p>3.4查询姓名中第2个字母为“i”的学生记录</p>
+<p>select * from stu where sname like ‘_i%’;</p>
+<p>3.5　查询姓名中包含“a”字母的学生记录</p>
+<p>select * from stu where sname like ‘%a%’;<br>//————————————————————————————————-<br>4.1　去除重复记录<br>    关键词: distinct =&gt; 去除重复记录.</p>
+<pre><code>select <span class="keyword">distinct</span> gender <span class="keyword">from</span> stu;
+</code></pre><p>4.2查看雇员的月薪与佣金之和</p>
+<pre><code><span class="keyword">select</span> ename,sal+comm <span class="keyword">from</span> emp;
+
+注意: 任何值与<span class="keyword">null</span> 计算结果都是<span class="keyword">null</span>; 使用如下写法:
+使用 IFNULL(参数<span class="number">1</span>,参数<span class="number">2</span>) 函数.  =&gt; 判断参数<span class="number">1</span>的值是否是<span class="keyword">null</span>, 如果是<span class="keyword">null</span> ,返回参数<span class="number">2.</span>
+<span class="keyword">select</span> ename,sal+ifnull(comm,<span class="number">0</span>) <span class="keyword">from</span> emp;
+</code></pre><p>4.3　给列名添加别名</p>
+<pre><code><span class="operator"><span class="keyword">select</span> ename,sal+<span class="keyword">ifnull</span>(comm,<span class="number">0</span>) <span class="keyword">from</span> emp;</span>
+//下面是加别名的写法
+<span class="operator"><span class="keyword">select</span> ename,sal+<span class="keyword">ifnull</span>(comm,<span class="number">0</span>) <span class="keyword">as</span> <span class="string">'实际收入'</span> <span class="keyword">from</span> emp;</span>
+<span class="operator"><span class="keyword">select</span> ename <span class="string">'姓名'</span>,sal+<span class="keyword">ifnull</span>(comm,<span class="number">0</span>) <span class="string">'实际收入'</span> <span class="keyword">from</span> emp;</span>
+</code></pre><p>//———————————————————————————————————————————————————————————————</p>
+<p>5.1　查询所有学生记录，按年龄升序排序<br>    asc: 升序<br>    desc:降序</p>
+<pre><code><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">order</span> <span class="keyword">by</span> age ;  ==&gt; 不写升序 降序, 默认是升序
+<span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">order</span> <span class="keyword">by</span> age asc;
+</code></pre><p>如果不指定排序规则,则使用升序排列</p>
+<p>5.2 查询所有学生记录，按年龄降序排序</p>
+<pre><code><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">order</span> <span class="keyword">by</span> age <span class="keyword">desc</span>;</span>
+
+null: 是最小的.
+</code></pre><p>5.3 查询所有雇员，按月薪降序排序，如果月薪相同时，按编号升序排序</p>
+<pre><code><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>,empno <span class="keyword">asc</span>;</span>
+</code></pre><p>聚合函数<br>聚合函数是用来做纵向运算的函数：<br>?   COUNT()：统计指定列不为NULL的记录行数；<br>?   MAX()：计算指定列的最大值，如果指定列是字符串类型，那么使用字符串排序运算；<br>?   MIN()：计算指定列的最小值，如果指定列是字符串类型，那么使用字符串排序运算；<br>?   SUM()：计算指定列的数值和，如果指定列类型不是数值类型，那么计算结果为0；<br>?   AVG()：计算指定列的平均值，如果指定列类型不是数值类型，那么计算结果为0；</p>
+<p>6.1　COUNT<br>当需要纵向统计时可以使用COUNT()。<br>?   1&gt;查询emp表中记录数：</p>
+<pre><code>    <span class="keyword">select</span> count<span class="comment">(*) from emp;
+
+2&gt;查询emp表中有佣金的人数：
+
+    select count(comm) from emp where comm != 0;
+
+    注意: 在计数时 null 不计入.
+
+3&gt;查询emp表中月薪大于2500的人数：
+
+    select count(*)</span> <span class="keyword">from</span> emp <span class="keyword">where</span> sal &gt; <span class="number">2500</span>;
+
+<span class="number">4</span>&gt;统计月薪与佣金之和大于<span class="number">2500</span>元的人数：
+
+    <span class="keyword">select</span> count<span class="comment">(*) from emp where (sal+ifnull(comm,0)) &gt; 2500;
+
+5&gt;查询有佣金的人数，以及有领导的人数：
+
+    select count(*)</span> <span class="keyword">from</span> emp <span class="keyword">where</span> comm <span class="keyword">is</span> <span class="keyword">not</span> null <span class="keyword">and</span> comm&gt;<span class="number">0</span> <span class="keyword">and</span> mgr <span class="keyword">is</span> <span class="keyword">not</span> null;
+</code></pre><p>6.2　SUM(计算总和)和AVG(计算平均值)<br>    当需要纵向求和时使用sum()函数。<br>?   1&gt;查询所有雇员月薪和：</p>
+<pre><code>    <span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp;
+
+<span class="number">2</span>&gt;查询所有雇员月薪和，以及所有雇员佣金和：
+
+
+    <span class="keyword">select</span> <span class="built_in">sum</span>(sal),<span class="built_in">sum</span>(comm) <span class="keyword">from</span> emp;
+
+
+<span class="number">3</span>&gt;查询所有雇员月薪+佣金和：
+
+    <span class="keyword">select</span> <span class="built_in">sum</span>(sal+ifnull(comm,<span class="number">0</span>)) <span class="keyword">from</span> emp;
+
+<span class="number">4</span>&gt;统计所有员工平均工资：
+
+    <span class="keyword">select</span> <span class="built_in">avg</span>(sal) <span class="keyword">from</span> emp;
+</code></pre><p>6.3　MAX和MIN<br>?   查询最高工资和最低工资：</p>
+<pre><code><span class="operator"><span class="keyword">select</span> <span class="keyword">max</span>(sal),<span class="keyword">min</span>(sal) <span class="keyword">from</span> emp;</span>
+</code></pre><p>//———————————————————————————————————————————————————————————————————-</p>
+<p>分组查询</p>
+<p>当需要分组查询时需要使用GROUP BY子句，例如查询每个部门的工资和，这说明要使用部分来分组。</p>
+<p>?   1&gt;查询每个部门的部门编号和每个部门的工资和：</p>
+<pre><code>        <span class="keyword">select</span>  deptno , <span class="built_in">sum</span>(sal)  <span class="keyword">from</span> emp <span class="built_in">group</span> <span class="keyword">by</span>  deptno;
+
+
+<span class="number">2</span>&gt;查询每个部门的部门编号以及每个部门的人数：
+
+        <span class="keyword">select</span> deptno , <span class="built_in">count</span>(empno) <span class="keyword">from</span> emp <span class="built_in">group</span> <span class="keyword">by</span> deptno;
+
+
+<span class="number">3</span>&gt;查询每个部门的部门编号以及每个部门工资大于<span class="number">1500</span>的人数：
+
+        <span class="keyword">select</span> deptno , <span class="built_in">count</span>(empno) <span class="keyword">from</span> emp <span class="built_in">where</span> sal &gt; <span class="number">1500</span> <span class="built_in">group</span> <span class="keyword">by</span> deptno;
+</code></pre><p>HAVING子句<br>?   查询工资总和大于9000的部门编号以及工资和：</p>
+<pre><code><span class="operator"><span class="keyword">select</span> deptno,<span class="keyword">sum</span>(sal) <span class="keyword">from</span> emp  <span class="keyword">group</span> <span class="keyword">by</span> deptno <span class="keyword">having</span> <span class="keyword">sum</span>(sal) &gt; <span class="number">9000</span>;</span>
+</code></pre><p> HAVING过滤 和 where过滤区别?<br>        HAVING ==&gt; 在分组后 进行过滤筛选.<br>        where ==&gt; 在分组之前 进行过滤筛选.</p>
+<pre><code>注意: 如果 使用 having 或 <span class="keyword">where</span> 都可以完成需求, 那么一定要优先使用 <span class="keyword">where</span>.
+        因为 分组 本身资源消耗极大.
+</code></pre><p>//———————————————————————-以上是查询————————————————————————————————————————-</p>
+<p>//———————————————————————一下是分页相关知识———————————————————————————————————————————-<br>LIMIT（MySQL方言） (必须掌握)<br>LIMIT用来限定查询结果的起始行，以及总行数。</p>
+<p>1&gt;查询5行记录，起始行从0开始</p>
+<p>select * from emp order by sal desc limit 0,5;</p>
+<p>2&gt;　查询10行记录，起始行从3开始</p>
+<p>select * from emp limit 3,10;</p>
+<p>3&gt;如果一页记录为5条，希望查看第3页记录应该怎么查呢？<br>?   第一页记录起始行为0，一共查询5行；<br>    select <em> from emp order by sal desc limit 0,5;<br>?   第二页记录起始行为5，一共查询5行；<br>    select </em> from emp order by sal desc limit 5,5;<br>?   第三页记录起始行为10，一共查询5行；<br>    select * from emp order by sal desc limit 10,5;</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mysql-数据库/">Mysql 数据库</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.zhoukai.xyz/2015/04/10/MySql/" data-title="MySql | 滴水" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/10/redis-安装/"  title="redis_安装">
+ <strong>下一篇：</strong><br/> 
+ <span>redis_安装
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MYSQL中预设管理员名称为_root"><span class="toc-number">1.</span> <span class="toc-text">MYSQL中预设管理员名称为 root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DDL_数据库定义语言(库的操作)"><span class="toc-number">2.</span> <span class="toc-text">DDL 数据库定义语言(库的操作)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库中的数据类型"><span class="toc-number">2.1.</span> <span class="toc-text">数据库中的数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与创建表相关的语句(DDL)_(记住,能够手写)"><span class="toc-number">2.2.</span> <span class="toc-text">与创建表相关的语句(DDL) (记住,能够手写)</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Mysql-数据库/" title="Mysql 数据库">Mysql 数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/redis-安装/" title="redis 安装">redis 安装<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis/" title="redis">redis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://blog.zhoukai.xyz/about" target="_blank" title="dishui">dishui</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
