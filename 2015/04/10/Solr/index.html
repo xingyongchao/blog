@@ -1,0 +1,712 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Solr | Java Hadoop Storm Spark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dishui">
+    
+
+    
+    <meta name="description" content="Solrsolr 简介Solr也是Apache旗下的顶级项目。基于lucene开发的全文检索服务器。
+Solr和Lucene的版本同步更新。
+solr可以独立运行，需要运行在web容器中。例如：Tomcat、WebLogic、jetty、Jboss
+solr服务对外提供服务，可以使用服务的接口和solr服务进行交换。
+使用get和post方法基于http的请求，和客户端进行数据交互。
+传递的数据可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solr">
+<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/10/Solr/index.html">
+<meta property="og:site_name" content="Java Hadoop Storm Spark">
+<meta property="og:description" content="Solrsolr 简介Solr也是Apache旗下的顶级项目。基于lucene开发的全文检索服务器。
+Solr和Lucene的版本同步更新。
+solr可以独立运行，需要运行在web容器中。例如：Tomcat、WebLogic、jetty、Jboss
+solr服务对外提供服务，可以使用服务的接口和solr服务进行交换。
+使用get和post方法基于http的请求，和客户端进行数据交互。
+传递的数据可">
+<meta property="og:image" content="../pic/solr_01.png">
+<meta property="og:image" content="../pic/dataimport.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Solr">
+<meta name="twitter:description" content="Solrsolr 简介Solr也是Apache旗下的顶级项目。基于lucene开发的全文检索服务器。
+Solr和Lucene的版本同步更新。
+solr可以独立运行，需要运行在web容器中。例如：Tomcat、WebLogic、jetty、Jboss
+solr服务对外提供服务，可以使用服务的接口和solr服务进行交换。
+使用get和post方法基于http的请求，和客户端进行数据交互。
+传递的数据可">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Java Hadoop Storm Spark" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Java Hadoop Storm Spark" title="Java Hadoop Storm Spark"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Java Hadoop Storm Spark">Java Hadoop Storm Spark</a></h1>
+				<h2 class="blog-motto">点滴知识</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">分类</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.zhoukai.xyz">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/10/Solr/" title="Solr" itemprop="url">Solr</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://blog.zhoukai.xyz/about" title="dishui" target="_blank" itemprop="author">dishui</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-10T02:58:34.000Z" itemprop="datePublished"> 发表于 2015-04-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solr"><span class="toc-number">1.</span> <span class="toc-text">Solr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#solr_简介"><span class="toc-number">1.1.</span> <span class="toc-text">solr 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#下载地址"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">下载地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solr的部署步骤："><span class="toc-number">1.2.</span> <span class="toc-text">Solr的部署步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#查看solr服务"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">查看solr服务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#schema"><span class="toc-number">1.3.</span> <span class="toc-text">schema</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#schema-xml文件"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">schema.xml文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#业务字段配置"><span class="toc-number">1.4.</span> <span class="toc-text">业务字段配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置dataimport插件"><span class="toc-number">1.5.</span> <span class="toc-text">配置dataimport插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引库的修改"><span class="toc-number">1.6.</span> <span class="toc-text">索引库的修改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#索引库的删除"><span class="toc-number">1.6.1.</span> <span class="toc-text">索引库的删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Request-Handler_(qt)："><span class="toc-number">2.</span> <span class="toc-text">Request-Handler (qt)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solr的客户端：SolrJ"><span class="toc-number">3.</span> <span class="toc-text">Solr的客户端：SolrJ</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加文档："><span class="toc-number">3.0.1.</span> <span class="toc-text">添加文档：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除文档："><span class="toc-number">3.0.2.</span> <span class="toc-text">删除文档：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">3.0.3.</span> <span class="toc-text">查询</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="Solr">Solr</h2><h3 id="solr_简介">solr 简介</h3><pre><code>Solr也是Apache旗下的顶级项目。基于lucene开发的全文检索服务器。
+Solr和Lucene的版本同步更新。
+solr可以独立运行，需要运行在web容器中。例如：Tomcat、WebLogic、jetty、Jboss
+solr服务对外提供服务，可以使用服务的接口和solr服务进行交换。
+使用<span class="built_in">get</span>和<span class="built_in">post</span>方法基于<span class="keyword">http</span>的请求，和客户端进行数据交互。
+传递的数据可以是xml也可以是json。
+</code></pre><p><img src="../pic/solr_01.png" alt=""></p>
+<hr>
+<h5 id="下载地址">下载地址</h5><p><a href="http://lucene.apache.org/solr/" target="_blank" rel="external">solr 下载地址</a></p>
+<blockquote>
+<p><strong>要求:</strong><br><code>Jdk</code>：1.7以上<br><code>Tomcat</code> 7.0以上</p>
+</blockquote>
+<hr>
+<h3 id="Solr的部署步骤：">Solr的部署步骤：</h3><ol>
+<li>安装Tomcat</li>
+<li>把<code>solr-4.10.3\dist\solr-4.10.3.war</code>放到tomcat的webapp下，改名为solr.war</li>
+<li>解压war包。</li>
+<li>复制<font color="red"><code>\solr-4.10.3\example\lib\ext</code></font>目录下的jar复制到solr工程的lib下。主要是日志相关的jar包</li>
+<li>在solr项目的WEB-INF下创建一个classes目录，把<font color="red"><code>\solr-4.103\example\resources\log4j.properties</code></font>复制过去。</li>
+<li>需要配置<strong>SolrHome</strong>及<strong>SolrCore</strong><ul>
+<li><strong>solrHome</strong>：就是solr服务器配置文件的目录。<code>\solr-4.10.3\example\solr</code>文件夹就是一个标准的solrhome。</li>
+<li><strong>SolrCore</strong>：一个SolrCore就是一个完整功能的索引库。可以类比mysql数据库的一个库。索引库之间数据是隔离的。</li>
+<li>把<font color="red"><code>\solr-4.10.3\example\solr</code></font>文件夹复制到指定位置（任意位置都可以）。本例中<code>D:\1125\solr</code>目录下，改名为solrhome（改名不是必须，便于理解）</li>
+</ul>
+</li>
+<li>配置<code>solrconfig.xml</code>(“solrhome”<code>\collection1\conf</code>)（此步骤也不是必须的）<ul>
+<li><code>&lt;lib&gt;</code>：solrcore需要引用的扩展包。默认的路径是<strong>SolrCore</strong>的目录也就是<strong>collection1</strong>目录下的lib文件夹。（此步骤也不是必须的）</li>
+<li><code>&lt;dataDir&gt;</code>：索引库的存放位置。默认路径是<strong>SolrCore</strong>的目录也就是<strong>collection1</strong>目录下的data文件夹。如果想使用默认的路径不需要修改配置。data文件夹会自动创建。</li>
+<li><code>&lt;requestHandler&gt;</code>:配置solr服务的接口。其中索引的维护使用<code>/update</code>   查询：<code>/query</code> 、<code>/select</code></li>
+</ul>
+</li>
+<li><p>在solr工程的web.xml中配置solrhome的位置。目的是让solr服务器知道solrhome的位置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置jndi告诉solr工程我们的solrhome的位置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">env-entry</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">env-entry-name</span>&gt;</span>solr/home<span class="tag">&lt;/<span class="title">env-entry-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">env-entry-value</span>&gt;</span>D:/1125/solr<span class="tag">&lt;/<span class="title">env-entry-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">env-entry-type</span>&gt;</span>java.lang.String<span class="tag">&lt;/<span class="title">env-entry-type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">env-entry</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动tomcat。</p>
+</li>
+</ol>
+<h5 id="查看solr服务">查看solr服务</h5><p>访问：<code>http://localhost:8080/solr</code></p>
+<hr>
+<h3 id="schema">schema</h3><ul>
+<li>索引的维护包含：增删改操作。</li>
+</ul>
+<ul>
+<li>创建索引：<br>  <font color="red">id</font>域是必须的，是一个唯一的<font color="red">key</font>，相当于关系型数据库表的主键。<br>  域的名字必须是先定义后使用，不能随意起名。</li>
+</ul>
+<ul>
+<li><p>域的名字在哪儿定义？</p>
+<p>  <code>solrcore\conf\scheam.xml</code>中定义</p>
+</li>
+</ul>
+<h5 id="schema-xml文件">schema.xml文件</h5><font color="red">field</font>：在标签中定义了<br><br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name：域的名字</span><br><span class="line"><span class="keyword">index</span>：是否索引</span><br><span class="line"><span class="keyword">stored</span>：是否存储</span><br><span class="line">multiValued：是否多值</span><br><span class="line"><span class="keyword">type</span>：域的数据类型，是否分词取决于数据类型</span><br></pre></td></tr></table></figure><br><br><font color="red">dynamicField</font>：<br><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">动态域，只要域名和动态域的表达式相匹配，此域名就可以使用。</span><br></pre></td></tr></table></figure><br><br><font color="red">uniqueKey</font>：<br><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="tag">&lt;<span class="title">uniqueKey</span>&gt;</span>id<span class="tag">&lt;/<span class="title">uniqueKey</span>&gt;</span>`定义了主键域。</span><br></pre></td></tr></table></figure><br><br><font color="red">copyField</font>：<br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当复制域的<span class="built_in">source</span>指定域存储时，自动复制到目标域dest指定的域中。</span><br></pre></td></tr></table></figure><br><br><font color="red">fieldType</font>：域的类型<br><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="property">name</span>：类型名</span><br><span class="line"><span class="type">class</span>：对应类型的一个类。是否分词取决于此类。</span><br><span class="line">    在域的类型中配分析器。</span><br></pre></td></tr></table></figure><br><br>## 配置<font color="red">中文分析器</font>
+
+<blockquote>
+<p>1.把<code>IKAnalyzer2012FF_u1.jar</code>复制到<code>solr工程的lib下</code>。<br>2.把配置文件及扩展词典和停用词词典复制到<code>solr工程的classes目录下</code>。一定要注解扩展词典及停用词词典的编码格式要为utf-8.<br>3.修改<code>schema.xml</code><br>3.1增加一个<code>FieldType</code></p>
+</blockquote>
+<p>3.2添加域<code>field</code>，指定field的type属性为<font color="red">text_ik</font></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--IKAnalyzer Field--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"title_ik"</span> <span class="attribute">type</span>=<span class="value">"text_ik"</span> <span class="attribute">indexed</span>=<span class="value">"true"</span> <span class="attribute">stored</span>=<span class="value">"true"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"content_ik"</span> <span class="attribute">type</span>=<span class="value">"text_ik"</span> <span class="attribute">indexed</span>=<span class="value">"true"</span> <span class="attribute">stored</span>=<span class="value">"true"</span> <span class="attribute">multiValued</span>=<span class="value">"true"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>4.重启tomcat</p>
+<h3 id="业务字段配置">业务字段配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--product--&gt;</span></span><br><span class="line">//是和数据库中表的字段对应</span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"product_name"</span> <span class="attribute">type</span>=<span class="value">"text_ik"</span> <span class="attribute">indexed</span>=<span class="value">"true"</span> <span class="attribute">stored</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"product_price"</span>  <span class="attribute">type</span>=<span class="value">"float"</span> <span class="attribute">indexed</span>=<span class="value">"true"</span> <span class="attribute">stored</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"product_description"</span> <span class="attribute">type</span>=<span class="value">"text_ik"</span> <span class="attribute">indexed</span>=<span class="value">"true"</span> <span class="attribute">stored</span>=<span class="value">"false"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"product_picture"</span> <span class="attribute">type</span>=<span class="value">"string"</span> <span class="attribute">indexed</span>=<span class="value">"false"</span> <span class="attribute">stored</span>=<span class="value">"true"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"product_catalog_name"</span> <span class="attribute">type</span>=<span class="value">"string"</span> <span class="attribute">indexed</span>=<span class="value">"true"</span> <span class="attribute">stored</span>=<span class="value">"true"</span> /&gt;</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">//创建一个默认搜索域</span><br><span class="line">   <span class="tag">&lt;<span class="title">field</span> <span class="attribute">name</span>=<span class="value">"product_keywords"</span> <span class="attribute">type</span>=<span class="value">"text_ik"</span> <span class="attribute">indexed</span>=<span class="value">"true"</span> <span class="attribute">stored</span>=<span class="value">"false"</span> <span class="attribute">multiValued</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//把商品名称和商品描述的信息，复制到默认搜索域中。   </span><br><span class="line">    <span class="tag">&lt;<span class="title">copyField</span> <span class="attribute">source</span>=<span class="value">"product_name"</span> <span class="attribute">dest</span>=<span class="value">"product_keywords"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">copyField</span> <span class="attribute">source</span>=<span class="value">"product_description"</span> <span class="attribute">dest</span>=<span class="value">"product_keywords"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="配置dataimport插件"><font color="red">配置dataimport插件</font></h3><ol>
+<li>dataimport插件相关的jar复制到<code>solrcore\lib</code>下</li>
+<li>把mysql的jar包一并复制到<code>solrcore\lib</code>下<br><img src="../pic/dataimport.png" alt=""></li>
+<li>修改<code>solrconfig.xml</code>文件(“solrhome”<code>\collection1\conf</code>)</li>
+</ol>
+<ul>
+<li><p>增加一个<code>requesthandler</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">requestHandler</span> <span class="attribute">name</span>=<span class="value">"/dataimport"</span> <span class="attribute">class</span>=<span class="value">"org.apache.solr.handler.dataimport.DataImportHandler"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">lst</span> <span class="attribute">name</span>=<span class="value">"defaults"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">str</span> <span class="attribute">name</span>=<span class="value">"config"</span>&gt;</span>data-config.xml<span class="tag">&lt;/<span class="title">str</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">lst</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">requestHandler</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>solrcore\conf</code>(对应<code>\collection1\conf</code>)目录下创建一个data-config.xml文件</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">dataConfig</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;<span class="title">dataSource</span> <span class="attribute">type</span>=<span class="value">"JdbcDataSource"</span>   </span><br><span class="line">          <span class="attribute">driver</span>=<span class="value">"com.mysql.jdbc.Driver"</span>   </span><br><span class="line">          <span class="attribute">url</span>=<span class="value">"jdbc:mysql://localhost:3306/solr"</span>   </span><br><span class="line">          <span class="attribute">user</span>=<span class="value">"root"</span>   </span><br><span class="line">          <span class="attribute">password</span>=<span class="value">"123"</span>/&gt;</span>   </span><br><span class="line"><span class="tag">&lt;<span class="title">document</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="title">entity</span> <span class="attribute">name</span>=<span class="value">"product"</span> <span class="attribute">query</span>=<span class="value">"SELECT pid,name,catalog_name,price,description,picture FROM products "</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="title">field</span> <span class="attribute">column</span>=<span class="value">"pid"</span> <span class="attribute">name</span>=<span class="value">"id"</span>/&gt;</span> </span><br><span class="line">         <span class="tag">&lt;<span class="title">field</span> <span class="attribute">column</span>=<span class="value">"name"</span> <span class="attribute">name</span>=<span class="value">"product_name"</span>/&gt;</span> </span><br><span class="line">         <span class="tag">&lt;<span class="title">field</span> <span class="attribute">column</span>=<span class="value">"catalog_name"</span> <span class="attribute">name</span>=<span class="value">"product_catalog_name"</span>/&gt;</span> </span><br><span class="line">         <span class="tag">&lt;<span class="title">field</span> <span class="attribute">column</span>=<span class="value">"price"</span> <span class="attribute">name</span>=<span class="value">"product_price"</span>/&gt;</span> </span><br><span class="line">         <span class="tag">&lt;<span class="title">field</span> <span class="attribute">column</span>=<span class="value">"description"</span> <span class="attribute">name</span>=<span class="value">"product_description"</span>/&gt;</span> </span><br><span class="line">         <span class="tag">&lt;<span class="title">field</span> <span class="attribute">column</span>=<span class="value">"picture"</span> <span class="attribute">name</span>=<span class="value">"product_picture"</span>/&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="title">entity</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="title">document</span>&gt;</span>   </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">dataConfig</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>重启tomcat</li>
+</ol>
+<hr>
+<h3 id="索引库的修改">索引库的修改</h3><pre><code>如果想修改<span class="property">id</span>为<span class="number">1</span>的文档，直接向索引库中添加一个<span class="property">id</span>为<span class="number">1</span> 的文档，新的文档会把原理的文档替换掉。
+原理就是先删除<span class="property">id</span>为<span class="number">1</span>的文档，然后又新追加了一个文档。
+</code></pre><h4 id="索引库的删除">索引库的删除</h4><ol>
+<li>直接指定id来删除<br>先选择Document Type为xml，然后在Document(s)区域中写入：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">id</span>&gt;</span>2<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">deleter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">commit</span>/&gt;</span> <span class="comment">&lt;!--提交--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>就可以删除指定id的文档。</p>
+<ol>
+<li>可以指定查询条件来删除：<br>在solr中对lucene的查询语法完全支持。<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">query</span>&gt;</span>*:*<span class="tag">&lt;/<span class="title">query</span>&gt;</span><span class="comment">&lt;!--指定查询条件，删除所有文档--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">commit</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="Request-Handler_(qt)：">Request-Handler (qt)：</h2><p><span class="d_green">/select 在<code>solrconfig.xml</code>中定义的。</span></p>
+<ul>
+<li><font color="red">q:查询条件</font>
+
+</li>
+</ul>
+<blockquote>
+<p>查询的语法：</p>
+<blockquote>
+<pre><code>域名：查询条件
+例如：product_name:花儿朵朵、<span class="keyword">*</span>:<span class="keyword">*</span>
+</code></pre></blockquote>
+<p>范围查询语法：</p>
+<blockquote>
+<pre><code><span class="keyword">field</span>:[* <span class="keyword">TO</span> <span class="number">100</span>]    小于等于<span class="number">100</span>
+<span class="keyword">field</span>:[<span class="number">100</span> <span class="keyword">TO</span> *]  大于等于<span class="number">100</span>
+<span class="keyword">field</span>:[<span class="number">100</span> <span class="keyword">TO</span> <span class="number">200</span>] 大于等于<span class="number">100</span>小于等于<span class="number">200</span>
+</code></pre></blockquote>
+</blockquote>
+<p>组合条件查询：</p>
+<pre><code><span class="label">product_price:</span>[<span class="number">0</span> TO <span class="number">1</span>] <span class="keyword">OR</span> product_catalog_name:时尚卫浴
+</code></pre><ul>
+<li><font color="red">fq</font>
+
+<pre><code>过滤条件，过滤条件和查询条件的区别是，过滤条件是在查询条件
+查询出来的结果基础上进行过滤。
+</code></pre></li>
+</ul>
+<blockquote>
+<p>ps: 过滤条件可以是多个。</p>
+</blockquote>
+<ul>
+<li><font color="red">sort</font>
+
+<pre><code>排序条件，多个排序条件使用“,”分隔
+域名 <span class="keyword">asc</span>|<span class="keyword">desc</span>
+例如：product_price <span class="keyword">desc</span>,product_name <span class="keyword">asc</span>
+</code></pre></li>
+<li><p><font color="red">start, rows</font><br>分页信息</p>
+<blockquote>
+<p>start：</p>
+</blockquote>
+<pre><code>起始的记录
+</code></pre></li>
+<li><font color="red">rows</font>
+
+<pre><code>每页显示的总条数
+</code></pre></li>
+</ul>
+<ul>
+<li><font color="red">fl</font>
+
+<pre><code>返回结果中域的列表，如果不指定默认返回所有域。多个域使用“,”分隔。
+</code></pre></li>
+<li><font color="red">df</font>
+
+<pre><code>默认搜索域
+</code></pre></li>
+<li><font color="red">wt</font>
+
+<pre><code>返回结果的格式<span class="built_in">xml</span>、json
+</code></pre></li>
+<li><font color="red">hl</font>
+
+</li>
+</ul>
+<hr>
+<h2 id="Solr的客户端：SolrJ">Solr的客户端：SolrJ</h2><p><strong>如何把solrJ集成到项目中。也就是如何使用SolrJ调用solr服务。</strong></p>
+<p><span class="d_green">实现步骤</span></p>
+<pre><code>1. 创建一个java工程
+2. 导入solrJ的jar包。
+<span class="command">\solr</span>-4.10.3<span class="command">\dist</span><span class="command">\solr</span>-solrj-4.10.3.jar
+<span class="command">\solr</span>-4.10.3<span class="command">\dist</span><span class="command">\solrj</span>-lib下所有的jar包。
+还需要<span class="command">\solr</span>-4.10.3<span class="command">\example</span><span class="command">\lib</span><span class="command">\ext</span>下所有的jar包。
+三部分组成。
+3. SolrServer对象来和服务端建立连接。HttpSolrServer创建SolrServer对象。
+4. 使用solrJ对solr服务端进行增删改查操作。
+</code></pre><h4 id="添加文档：">添加文档：</h4><ol>
+<li>创建一个SolrInputDocument对象</li>
+<li>向document对象中添加域</li>
+<li>向服务端添加文档</li>
+<li>commit。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向solr索引库中添加文档</span></span><br><span class="line"><span class="annotation">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addDocument</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建连接</span></span><br><span class="line">    SolrServer server = <span class="keyword">new</span> HttpSolrServer(<span class="string">"http://localhost:8080/solr"</span>);</span><br><span class="line">    <span class="comment">//创建一个文档</span></span><br><span class="line">    SolrInputDocument document = <span class="keyword">new</span> SolrInputDocument();</span><br><span class="line">    <span class="comment">//向文档中添加域</span></span><br><span class="line">    document.addField(<span class="string">"id"</span>, <span class="string">"a001"</span>);</span><br><span class="line">    document.addField(<span class="string">"title_ik"</span>, <span class="string">"使用SolrJ新添加的文档"</span>);</span><br><span class="line">    <span class="comment">//向索引库中添加文档</span></span><br><span class="line">    server.add(document);</span><br><span class="line">    <span class="comment">//提交</span></span><br><span class="line">    server.commit();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="删除文档：">删除文档：</h4><p>deleteById<br>deleteByQuery<br>更新文档：操作同添加文档。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteDocument</span><span class="params">()</span> <span class="keyword">throws</span> SolrServerException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//创建连接</span></span><br><span class="line">        SolrServer server = <span class="keyword">new</span> HttpSolrServer(<span class="string">"http://localhost:8080/solr"</span>);</span><br><span class="line"><span class="comment">//      server.deleteById("a001");</span></span><br><span class="line"><span class="comment">//      server.deleteByQuery("id:3");</span></span><br><span class="line">        server.deleteByQuery(<span class="string">"*:*"</span>);</span><br><span class="line">        server.commit();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="查询"><font color="red">查询</font></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queryIndex</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//创建连接</span></span><br><span class="line">    SolrServer server = <span class="keyword">new</span> HttpSolrServer(<span class="string">"http://localhost:8080/solr"</span>);</span><br><span class="line">    <span class="comment">//创建一个查询对象</span></span><br><span class="line">    SolrQuery query = <span class="keyword">new</span> SolrQuery();</span><br><span class="line">    <span class="comment">//设置查询条件</span></span><br><span class="line">    query.setQuery(<span class="string">"麻布"</span>);</span><br><span class="line">    <span class="comment">//设置过滤条件</span></span><br><span class="line">    query.addFilterQuery(<span class="string">"product_catalog_name:幽默杂货"</span>);</span><br><span class="line">    <span class="comment">//设置排序条件</span></span><br><span class="line">    query.setSort(<span class="string">"product_price"</span>, ORDER.asc);</span><br><span class="line">    <span class="comment">//分页信息</span></span><br><span class="line">    query.setStart(<span class="number">0</span>);</span><br><span class="line">    query.setRows(<span class="number">20</span>);</span><br><span class="line">    <span class="comment">//设置返回结果中包含的域,不设置默认返回所有域</span></span><br><span class="line">    query.setFields(<span class="string">"id"</span>, <span class="string">"product_name"</span>, <span class="string">"product_price"</span>, <span class="string">"product_catalog_name"</span>);</span><br><span class="line">    <span class="comment">//设置默认搜索域</span></span><br><span class="line">    query.set(<span class="string">"df"</span>, <span class="string">"product_keywords"</span>);</span><br><span class="line">    <span class="comment">//高亮显示</span></span><br><span class="line">    query.setHighlight(<span class="keyword">true</span>);</span><br><span class="line">    <span class="comment">//高亮的域</span></span><br><span class="line">    query.addHighlightField(<span class="string">"product_name"</span>);</span><br><span class="line">    <span class="comment">//高亮前缀</span></span><br><span class="line">    query.setHighlightSimplePre(<span class="string">"&lt;em&gt;"</span>);</span><br><span class="line">    <span class="comment">//后缀</span></span><br><span class="line">    query.setHighlightSimplePost(<span class="string">"&lt;/em&gt;"</span>);</span><br><span class="line">    <span class="comment">//执行查询</span></span><br><span class="line">    QueryResponse result = server.query(query);</span><br><span class="line">    <span class="comment">//返回结果的列表</span></span><br><span class="line">    SolrDocumentList solrDocumentList = result.getResults();</span><br><span class="line">    System.out.println(<span class="string">"共查找到文档："</span> + solrDocumentList.getNumFound());</span><br><span class="line">    <span class="comment">//遍历结果</span></span><br><span class="line">    <span class="keyword">for</span> (SolrDocument solrDocument:solrDocumentList) &#123;</span><br><span class="line">        <span class="comment">//取高亮显示</span></span><br><span class="line">        Map&lt;String, Map&lt;String, List&lt;String&gt;&gt;&gt; highlighting = result.getHighlighting();</span><br><span class="line">        </span><br><span class="line">        String productName = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">//如果高亮结果中没有高亮信息</span></span><br><span class="line">        <span class="keyword">if</span> (highlighting.get(solrDocument.get(<span class="string">"id"</span>)) == <span class="keyword">null</span>) &#123;</span><br><span class="line">            productName = (String) solrDocument.get(<span class="string">"product_name"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//有高亮信息</span></span><br><span class="line">            productName= highlighting.get(solrDocument.get(<span class="string">"id"</span>)).get(<span class="string">"product_name"</span>).get(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        System.out.println(solrDocument.get(<span class="string">"id"</span>) + <span class="string">"\t"</span> </span><br><span class="line">                        + productName + <span class="string">"\t"</span> </span><br><span class="line">                        + solrDocument.get(<span class="string">"product_price"</span>) + <span class="string">"\t"</span> </span><br><span class="line">                        + solrDocument.get(<span class="string">"product_catalog_name"</span>));</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<hr>
+<hr>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Solr-Lucene/">Solr Lucene</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Solr/">Solr</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.zhoukai.xyz/2015/04/10/Solr/" data-title="Solr | Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/10/Hadoop集群搭建/" title="Hadoop集群搭建">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Hadoop集群搭建</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/10/MySql/"  title="MySql">
+ <strong>下一篇：</strong><br/> 
+ <span>MySql
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solr"><span class="toc-number">1.</span> <span class="toc-text">Solr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#solr_简介"><span class="toc-number">1.1.</span> <span class="toc-text">solr 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#下载地址"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">下载地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solr的部署步骤："><span class="toc-number">1.2.</span> <span class="toc-text">Solr的部署步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#查看solr服务"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">查看solr服务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#schema"><span class="toc-number">1.3.</span> <span class="toc-text">schema</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#schema-xml文件"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">schema.xml文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#业务字段配置"><span class="toc-number">1.4.</span> <span class="toc-text">业务字段配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置dataimport插件"><span class="toc-number">1.5.</span> <span class="toc-text">配置dataimport插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引库的修改"><span class="toc-number">1.6.</span> <span class="toc-text">索引库的修改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#索引库的删除"><span class="toc-number">1.6.1.</span> <span class="toc-text">索引库的删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Request-Handler_(qt)："><span class="toc-number">2.</span> <span class="toc-text">Request-Handler (qt)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solr的客户端：SolrJ"><span class="toc-number">3.</span> <span class="toc-text">Solr的客户端：SolrJ</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加文档："><span class="toc-number">3.0.1.</span> <span class="toc-text">添加文档：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除文档："><span class="toc-number">3.0.2.</span> <span class="toc-text">删除文档：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">3.0.3.</span> <span class="toc-text">查询</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Hadoop/" title="Hadoop">Hadoop<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hadoop-集群/" title="Hadoop 集群">Hadoop 集群<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql-数据库/" title="Mysql 数据库">Mysql 数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Pig/" title="Pig">Pig<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Solr-Lucene/" title="Solr Lucene">Solr Lucene<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Storm/" title="Storm">Storm<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/lucene/" title="lucene">lucene<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/redis-安装/" title="redis 安装">redis 安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/概念/" title="概念">概念<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/电商/" title="电商">电商<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/页面静态化/" title="页面静态化">页面静态化<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/高并发/" title="高并发">高并发<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/lucene/" title="lucene">lucene<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/概念/" title="概念">概念<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis/" title="redis">redis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/购物车/" title="购物车">购物车<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/高并发/" title="高并发">高并发<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Storm/" title="Storm">Storm<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/静态化/" title="静态化">静态化<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://blog.zhoukai.xyz/about" target="_blank" title="dishui">dishui</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

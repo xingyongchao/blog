@@ -1,0 +1,814 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Hadoop实战 | Java Hadoop Storm Spark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dishui">
+    
+
+    
+    <meta name="description" content="课程安排
+
+流量运营系统项目整体介绍
+流量运营系统项目技术架构
+流量运营系统项目技术要点
+流量运营系统项目模块开发实战
+
+
+项目整体介绍
+
+流量经营项目相关背景
+流量经营数据来源、内容（实例展示，字段介绍）
+流量经营数据处理流程（预处理,SCA,TAS等）
+数据分析结果（各阶段中间结果，最终结果）
+
+
+项目背景——项目起因
+
+运营商掌握了大量的用户上网行为数据
+用户上网行为数据丰富的商业价值 
+相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop实战">
+<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/19/Hadoop实战/index.html">
+<meta property="og:site_name" content="Java Hadoop Storm Spark">
+<meta property="og:description" content="课程安排
+
+流量运营系统项目整体介绍
+流量运营系统项目技术架构
+流量运营系统项目技术要点
+流量运营系统项目模块开发实战
+
+
+项目整体介绍
+
+流量经营项目相关背景
+流量经营数据来源、内容（实例展示，字段介绍）
+流量经营数据处理流程（预处理,SCA,TAS等）
+数据分析结果（各阶段中间结果，最终结果）
+
+
+项目背景——项目起因
+
+运营商掌握了大量的用户上网行为数据
+用户上网行为数据丰富的商业价值 
+相">
+<meta property="og:image" content="/pic/hadoop/xm-02.png">
+<meta property="og:image" content="/pic/hadoop/xm-03.png">
+<meta property="og:image" content="/pic/hadoop/xm-05.png">
+<meta property="og:image" content="/pic/hadoop/xm-06.png">
+<meta property="og:image" content="/pic/hadoop/xm-07.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop实战">
+<meta name="twitter:description" content="课程安排
+
+流量运营系统项目整体介绍
+流量运营系统项目技术架构
+流量运营系统项目技术要点
+流量运营系统项目模块开发实战
+
+
+项目整体介绍
+
+流量经营项目相关背景
+流量经营数据来源、内容（实例展示，字段介绍）
+流量经营数据处理流程（预处理,SCA,TAS等）
+数据分析结果（各阶段中间结果，最终结果）
+
+
+项目背景——项目起因
+
+运营商掌握了大量的用户上网行为数据
+用户上网行为数据丰富的商业价值 
+相">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Java Hadoop Storm Spark" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Java Hadoop Storm Spark" title="Java Hadoop Storm Spark"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Java Hadoop Storm Spark">Java Hadoop Storm Spark</a></h1>
+				<h2 class="blog-motto">点滴知识</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">分类</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.zhoukai.xyz">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/19/Hadoop实战/" title="Hadoop实战" itemprop="url">Hadoop实战</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://blog.zhoukai.xyz/about" title="dishui" target="_blank" itemprop="author">dishui</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-19T01:12:01.000Z" itemprop="datePublished"> 发表于 2015-04-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程安排"><span class="toc-number">1.</span> <span class="toc-text">课程安排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目整体介绍"><span class="toc-number">2.</span> <span class="toc-text">项目整体介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——项目起因"><span class="toc-number">3.</span> <span class="toc-text">项目背景——项目起因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——营销支撑"><span class="toc-number">4.</span> <span class="toc-text">项目背景——营销支撑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——投产成果"><span class="toc-number">5.</span> <span class="toc-text">项目背景——投产成果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——项目概况"><span class="toc-number">6.</span> <span class="toc-text">项目背景——项目概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目所处理的数据"><span class="toc-number">7.</span> <span class="toc-text">项目所处理的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目所处理的数据-1"><span class="toc-number">8.</span> <span class="toc-text">项目所处理的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目数据处理流程"><span class="toc-number">9.</span> <span class="toc-text">项目数据处理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目数据处理结果"><span class="toc-number">10.</span> <span class="toc-text">项目数据处理结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统架构设计"><span class="toc-number">11.</span> <span class="toc-text">系统架构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统整体架构"><span class="toc-number">12.</span> <span class="toc-text">系统整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主要技术选型"><span class="toc-number">13.</span> <span class="toc-text">主要技术选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心子系统SCA功能模块组成"><span class="toc-number">13.1.</span> <span class="toc-text">核心子系统SCA功能模块组成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目技术要点"><span class="toc-number">14.</span> <span class="toc-text">项目技术要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据预处理"><span class="toc-number">15.</span> <span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户行为轨迹增强"><span class="toc-number">16.</span> <span class="toc-text">用户行为轨迹增强</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则分类"><span class="toc-number">16.1.</span> <span class="toc-text">规则分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例分类"><span class="toc-number">16.2.</span> <span class="toc-text">实例分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容识别"><span class="toc-number">17.</span> <span class="toc-text">内容识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BI统计分析"><span class="toc-number">18.</span> <span class="toc-text">BI统计分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报表展现查询"><span class="toc-number">19.</span> <span class="toc-text">报表展现查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统功能界面：全景分析-用户"><span class="toc-number">19.1.</span> <span class="toc-text">系统功能界面：全景分析-用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统功能界面：综合分析"><span class="toc-number">19.2.</span> <span class="toc-text">系统功能界面：综合分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块实战"><span class="toc-number">20.</span> <span class="toc-text">模块实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据预处理-1"><span class="toc-number">20.1.</span> <span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则库生成"><span class="toc-number">20.2.</span> <span class="toc-text">规则库生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求、设计"><span class="toc-number">21.</span> <span class="toc-text">需求、设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#技术要点"><span class="toc-number">21.1.</span> <span class="toc-text">技术要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容增强"><span class="toc-number">21.2.</span> <span class="toc-text">内容增强</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技术难点、要点"><span class="toc-number">22.</span> <span class="toc-text">技术难点、要点</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="课程安排">课程安排</h2><blockquote>
+<ul>
+<li>流量运营系统项目整体介绍</li>
+<li>流量运营系统项目技术架构</li>
+<li>流量运营系统项目技术要点</li>
+<li>流量运营系统项目模块开发实战</li>
+</ul>
+</blockquote>
+<h2 id="项目整体介绍">项目整体介绍</h2><blockquote>
+<ul>
+<li>流量经营项目相关背景</li>
+<li>流量经营数据来源、内容（实例展示，字段介绍）</li>
+<li>流量经营数据处理流程（预处理,SCA,TAS等）</li>
+<li>数据分析结果（各阶段中间结果，最终结果）</li>
+</ul>
+</blockquote>
+<h2 id="项目背景——项目起因">项目背景——项目起因</h2><blockquote>
+<ul>
+<li>运营商掌握了大量的用户上网行为数据</li>
+<li>用户上网行为数据丰富的商业价值 </li>
+<li>相对廉价方便的大数据处理技术使得海量数据挖掘分析成为可能</li>
+<li>互联网企业对传统电信运营商的倒逼（市场，业务，技术）</li>
+</ul>
+</blockquote>
+<h2 id="项目背景——营销支撑">项目背景——营销支撑</h2><blockquote>
+<ul>
+<li>对客户移动互联网行为进行采集，分析，发现用户关注相关内容，为开展营销提供号码支</li>
+</ul>
+</blockquote>
+<h2 id="项目背景——投产成果">项目背景——投产成果</h2><blockquote>
+<ul>
+<li>用户响应率有三倍提升<ul>
+<li>本次营销相关激励措施和前期开展的WAP PUSH营销相同；</li>
+<li>对比以往的群发响应率1%-3%，本次群发响应率效果明显，达到5.80%-10.21%，有近乎3倍的提升效果。</li>
+</ul>
+</li>
+<li>访问用户活跃度高<ul>
+<li>用户后有继续点击其他内容的行为，最高占比达到91.4%；</li>
+<li>产生二次点击行为的用户数的占比高，反映贴合用户需求的内容对用户的吸引力，用户粘性越高。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="项目背景——项目概况">项目背景——项目概况</h2><blockquote>
+<ul>
+<li>集群：3个<ul>
+<li>数据采集集群（6-10节点）</li>
+<li>行为轨迹增强处理集群（20-25节点）</li>
+<li>ETL、统计分析集群（35节点）</li>
+</ul>
+</li>
+<li>数据量：每天2T左右（10亿行以上），并在不断增长</li>
+<li>项目组规模<ul>
+<li>研发团队、实施团队、运维团队</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="项目所处理的数据">项目所处理的数据</h2><blockquote>
+<ul>
+<li>数据来源：<ul>
+<li>数据的采集可以是从硬件设备（如网关、Gn口、分光设备）直接获取并解析<br>  也可以是从其它系统（如BOSS和VGOP）导入</li>
+</ul>
+</li>
+<li>数据类型：<ul>
+<li>HTTP日志/WAP日志/MMS日志/ CONN日志/DNS日志</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="项目所处理的数据-1">项目所处理的数据</h2><ul>
+<li>数据格式及内容：<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http日志示例：</span><br><span class="line"><span class="number">1374609560.11</span>   <span class="number">1374609560.16</span>   <span class="number">1374609560.16</span>   <span class="number">1374609560.16</span>   <span class="number">110</span> <span class="number">5</span>   <span class="number">8615038208365</span>   <span class="number">460023383869133</span> <span class="number">8696420056841778</span>    <span class="number">2</span>   <span class="number">460</span> <span class="number">0</span>   <span class="number">14615</span>           <span class="number">54941</span>   <span class="number">10.188</span>.<span class="number">77.252</span>   <span class="number">61.145</span>.<span class="number">116.27</span>   <span class="number">35020</span>   <span class="number">80</span>  <span class="number">6</span>   cmnet   <span class="number">1</span>   <span class="number">221.177</span>.<span class="number">218.34</span>  <span class="number">221.177</span>.<span class="number">217.161</span> <span class="number">221.177</span>.<span class="number">218.34</span>  <span class="number">221.177</span>.<span class="number">217.167</span> ad<span class="class">.veegao</span><span class="class">.com</span>   http:<span class="comment">//ad.veegao.com/veegao/iris.action     Apache-HttpClient/UNAVAILABLE (java 1.4)    POST    200 593 310 4   3   0   0   4   3   0   0   0   0   http://ad.veegao.com/veegao/iris.action 5903903079251243019 5903903103500771339 5980728</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="项目数据处理流程">项目数据处理流程</h2><blockquote>
+<p>1 数据采集:清洗,分类,合并.上传HDFS集群<br>2 数据处理：内容识别,用户行为轨迹增强<br>3 数据挖掘、统计分析<br>4 业务应用、BI报表展示</p>
+</blockquote>
+<h2 id="项目数据处理结果">项目数据处理结果</h2><blockquote>
+<ul>
+<li>原始日志（plain text）</li>
+<li>分类合并日志（plain text）</li>
+<li>行为轨迹增强日志（plain text）</li>
+<li>待爬清单（plain text）</li>
+<li>挖掘、分析结果入库（关系型数据表）</li>
+</ul>
+</blockquote>
+<h2 id="系统架构设计">系统架构设计</h2><blockquote>
+<ul>
+<li>系统整体架构（系统分界，子系统划分，模块结构、层次结构）</li>
+<li>主要技术选型</li>
+<li>关键子系统SCA数据处理流程</li>
+<li>关键子系统SCA主要功能模块</li>
+</ul>
+</blockquote>
+<h2 id="系统整体架构">系统整体架构</h2><p><img src="/pic/hadoop/xm-02.png" alt=""></p>
+<h2 id="主要技术选型">主要技术选型</h2><blockquote>
+<ul>
+<li>数据采集：根据不同生产环境，有多种形式</li>
+<li>云存储：HDFS，事实上的大数据技术标准</li>
+<li>海量数据批处理：MAP/REDUCE</li>
+<li>爬虫系统：Nutch，技术成熟，功能齐全，文档丰富，易扩展易改造</li>
+<li>内容识别：模板匹配，XPATH，贝叶斯分类</li>
+<li>云ETL： HIVE，最通用成熟的大数据平台ETL/数据仓库工具；Python脚本</li>
+</ul>
+</blockquote>
+<h3 id="核心子系统SCA功能模块组成">核心子系统SCA功能模块组成</h3><blockquote>
+<ul>
+<li>数据采集：根据不同生产环境，有多种形式</li>
+<li>数据预处理</li>
+<li>数据上传HDFS</li>
+<li>行为轨迹增强</li>
+<li>内容识别</li>
+</ul>
+</blockquote>
+<h2 id="项目技术要点">项目技术要点</h2><blockquote>
+<ul>
+<li>数据预处理（采集，分类，上传HDFS）</li>
+<li>规则分类（在mapreduce中查询关系型数据库）</li>
+<li>实例分类（在mapreduce中查询kv数据库）</li>
+<li>内容识别（爬虫，模板、语义识别）</li>
+<li>定时任务、结果推送</li>
+<li>BI统计分析（实际投产脚本选样讲解）</li>
+<li>报表展现（JAVA WEB）</li>
+</ul>
+</blockquote>
+<h2 id="数据预处理">数据预处理</h2><blockquote>
+<ul>
+<li>数据采集：FTP/SHELL脚本/flume/activemq/socket/kafka</li>
+<li>数据预处理：JAVA （多线程，IO操作）</li>
+<li>数据上传HDFS：HDFS API<br><img src="/pic/hadoop/xm-03.png" alt=""></li>
+</ul>
+</blockquote>
+<h2 id="用户行为轨迹增强">用户行为轨迹增强</h2><h3 id="规则分类">规则分类</h3><blockquote>
+<ul>
+<li>规则库设计：分类体系，MYSQL关系库</li>
+<li>使用MAP/RED并发处理</li>
+<li>Mysql数据库的并发访问瓶颈</li>
+<li>MAP/RED设计技巧——setup()</li>
+<li>两类输出结果（增强日志，待爬清单）</li>
+<li>MAP/REDUCE 自定义OutputFormat</li>
+</ul>
+</blockquote>
+<h3 id="实例分类">实例分类</h3><blockquote>
+<ul>
+<li>实例库设计：使用KV内存数据库Flare/Redis</li>
+<li>使用MAP/RED并发处理</li>
+<li>需要实时更新（setup函数不适用）</li>
+</ul>
+</blockquote>
+<h2 id="内容识别">内容识别</h2><blockquote>
+<ul>
+<li>爬虫模块——<code>Nutch</code>（权限验证，防封策略，动态代理，动态改变agent）</li>
+<li>网页信息清洗、整理（标签补全，格式化，特定信息抽取）</li>
+<li>主题分类——自然语言处理（分词，模型训练），PLSA模型</li>
+</ul>
+</blockquote>
+<h2 id="BI统计分析">BI统计分析</h2><blockquote>
+<ul>
+<li>云ETL——HIVE</li>
+<li>Python脚本</li>
+<li>HIVE任务调度</li>
+<li>业务模型</li>
+<li>数据入库</li>
+</ul>
+</blockquote>
+<h2 id="报表展现查询">报表展现查询</h2><blockquote>
+<ul>
+<li>Mysql cluster</li>
+<li>Spring MVC</li>
+<li>AJAX</li>
+<li>数据可视化组件</li>
+</ul>
+</blockquote>
+<h3 id="系统功能界面：全景分析-用户">系统功能界面：全景分析-用户</h3><p><img src="/pic/hadoop/xm-05.png" alt=""></p>
+<blockquote>
+<p>偏好分析主菜单<br>全景分析<br>    对访问内容偏好情况的总体分析<br>综合分析<br>   对内容进行的35个类别的统计<br>阅读、新闻、游戏、音乐、视频<br>   对五种内容的类型的进一步分析；目前音乐和视频无法分析。<br>个性化分析<br>    针对某个用户号码的个性化偏好，以及适合推荐的业务。     </p>
+<p>一级标签、二级标签<br>目前的分类体系方法，仍在优化过程中。</p>
+</blockquote>
+<h3 id="系统功能界面：综合分析">系统功能界面：综合分析</h3><p><img src="/pic/hadoop/xm-06.png" alt=""><br><img src="/pic/hadoop/xm-07.png" alt=""></p>
+<h2 id="模块实战">模块实战</h2><h3 id="数据预处理-1">数据预处理</h3><blockquote>
+<ul>
+<li>需求、设计</li>
+<li>技术难点、要点（原子性，上传效率，失败重传、记录）</li>
+<li>涉及到的Hadoop相关知识（HDFS）的复习</li>
+<li>实战HDFS代码开发及部署运行</li>
+</ul>
+</blockquote>
+<h3 id="规则库生成">规则库生成</h3><blockquote>
+<ul>
+<li>需求、设计</li>
+<li>技术难点、要点（TOP K算法的mapreduce实现）</li>
+<li>涉及到的Hadoop相关知识（MAPRED）的复习</li>
+<li>实战mapreduce代码开发及部署运行</li>
+</ul>
+</blockquote>
+<h2 id="需求、设计">需求、设计</h2><blockquote>
+<ul>
+<li>需求：从样本数据中提取有代表性的url</li>
+<li>设计（流程）：<ul>
+<li>读入日志数据</li>
+<li>根据url访问的流量进行排序</li>
+<li>输出流量占总流量前80%的url</li>
+<li>将url列表文本数据导入mysql表</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="技术要点">技术要点</h3><blockquote>
+<ul>
+<li>用mapreduce实现排序</li>
+<li>用mapreduce实现topk</li>
+<li>将hdfs数据导入mysql</li>
+</ul>
+</blockquote>
+<h3 id="内容增强">内容增强</h3><blockquote>
+<ul>
+<li>需求、设计</li>
+<li>技术难点、要点（如何实现高效查询外部数据）</li>
+<li>涉及到的Hadoop相关知识（MAPRED）的复习</li>
+<li><p>实战mapreduce代码开发及部署运行</p>
+</li>
+<li><p>需求：对原始日志进行分类信息增强</p>
+</li>
+<li>设计（流程）：<ul>
+<li>读入日志数据</li>
+<li>过滤脏数据</li>
+<li>抽取url字段，查询规则分类表</li>
+<li>添加到原始日志</li>
+<li>根据分类情况输出两类结果</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="技术难点、要点">技术难点、要点</h2><blockquote>
+<p>Mapreduce中访问外部资源<br>Mapreduce中如何克服外部资源访问瓶颈<br>自定义OutputFormat类</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Hadoop/">Hadoop</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hadoop/">Hadoop</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.zhoukai.xyz/2015/04/19/Hadoop实战/" data-title="Hadoop实战 | Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/19/高并发/" title="高并发">
+  <strong>上一篇：</strong><br/>
+  <span>
+  高并发</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/19/FreeMarker/"  title="FreeMarker">
+ <strong>下一篇：</strong><br/> 
+ <span>FreeMarker
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程安排"><span class="toc-number">1.</span> <span class="toc-text">课程安排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目整体介绍"><span class="toc-number">2.</span> <span class="toc-text">项目整体介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——项目起因"><span class="toc-number">3.</span> <span class="toc-text">项目背景——项目起因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——营销支撑"><span class="toc-number">4.</span> <span class="toc-text">项目背景——营销支撑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——投产成果"><span class="toc-number">5.</span> <span class="toc-text">项目背景——投产成果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目背景——项目概况"><span class="toc-number">6.</span> <span class="toc-text">项目背景——项目概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目所处理的数据"><span class="toc-number">7.</span> <span class="toc-text">项目所处理的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目所处理的数据-1"><span class="toc-number">8.</span> <span class="toc-text">项目所处理的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目数据处理流程"><span class="toc-number">9.</span> <span class="toc-text">项目数据处理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目数据处理结果"><span class="toc-number">10.</span> <span class="toc-text">项目数据处理结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统架构设计"><span class="toc-number">11.</span> <span class="toc-text">系统架构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统整体架构"><span class="toc-number">12.</span> <span class="toc-text">系统整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主要技术选型"><span class="toc-number">13.</span> <span class="toc-text">主要技术选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心子系统SCA功能模块组成"><span class="toc-number">13.1.</span> <span class="toc-text">核心子系统SCA功能模块组成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目技术要点"><span class="toc-number">14.</span> <span class="toc-text">项目技术要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据预处理"><span class="toc-number">15.</span> <span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户行为轨迹增强"><span class="toc-number">16.</span> <span class="toc-text">用户行为轨迹增强</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则分类"><span class="toc-number">16.1.</span> <span class="toc-text">规则分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例分类"><span class="toc-number">16.2.</span> <span class="toc-text">实例分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容识别"><span class="toc-number">17.</span> <span class="toc-text">内容识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BI统计分析"><span class="toc-number">18.</span> <span class="toc-text">BI统计分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报表展现查询"><span class="toc-number">19.</span> <span class="toc-text">报表展现查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统功能界面：全景分析-用户"><span class="toc-number">19.1.</span> <span class="toc-text">系统功能界面：全景分析-用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统功能界面：综合分析"><span class="toc-number">19.2.</span> <span class="toc-text">系统功能界面：综合分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块实战"><span class="toc-number">20.</span> <span class="toc-text">模块实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据预处理-1"><span class="toc-number">20.1.</span> <span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则库生成"><span class="toc-number">20.2.</span> <span class="toc-text">规则库生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求、设计"><span class="toc-number">21.</span> <span class="toc-text">需求、设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#技术要点"><span class="toc-number">21.1.</span> <span class="toc-text">技术要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容增强"><span class="toc-number">21.2.</span> <span class="toc-text">内容增强</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技术难点、要点"><span class="toc-number">22.</span> <span class="toc-text">技术难点、要点</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Hadoop/" title="Hadoop">Hadoop<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hadoop-集群/" title="Hadoop 集群">Hadoop 集群<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql-数据库/" title="Mysql 数据库">Mysql 数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Pig/" title="Pig">Pig<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Solr-Lucene/" title="Solr Lucene">Solr Lucene<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Storm/" title="Storm">Storm<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/lucene/" title="lucene">lucene<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/redis-安装/" title="redis 安装">redis 安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/概念/" title="概念">概念<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/电商/" title="电商">电商<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/页面静态化/" title="页面静态化">页面静态化<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/高并发/" title="高并发">高并发<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/lucene/" title="lucene">lucene<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/概念/" title="概念">概念<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis/" title="redis">redis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/购物车/" title="购物车">购物车<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/高并发/" title="高并发">高并发<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Storm/" title="Storm">Storm<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/静态化/" title="静态化">静态化<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://blog.zhoukai.xyz/about" target="_blank" title="dishui">dishui</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
