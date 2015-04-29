@@ -1,0 +1,537 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Mybatis | Java Hadoop Storm Spark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dishui">
+    
+
+    
+    <meta name="description" content="1.6.10Mybatis解决jdbc编程的问题1、数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。2、Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。解决：将Sql语句配置在XXXXmapper.xml文件中与java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis">
+<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/29/Mybatis/index.html">
+<meta property="og:site_name" content="Java Hadoop Storm Spark">
+<meta property="og:description" content="1.6.10Mybatis解决jdbc编程的问题1、数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。2、Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。解决：将Sql语句配置在XXXXmapper.xml文件中与java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis">
+<meta name="twitter:description" content="1.6.10Mybatis解决jdbc编程的问题1、数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。2、Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。解决：将Sql语句配置在XXXXmapper.xml文件中与java">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Java Hadoop Storm Spark" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Java Hadoop Storm Spark" title="Java Hadoop Storm Spark"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Java Hadoop Storm Spark">Java Hadoop Storm Spark</a></h1>
+				<h2 class="blog-motto">点滴知识</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">分类</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.zhoukai.xyz">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/29/Mybatis/" title="Mybatis" itemprop="url">Mybatis</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://blog.zhoukai.xyz/about" title="dishui" target="_blank" itemprop="author">dishui</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-29T01:12:01.000Z" itemprop="datePublished"> 发表于 2015-04-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-10Mybatis解决jdbc编程的问题"><span class="toc-number">1.</span> <span class="toc-text">1.6.10Mybatis解决jdbc编程的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-11与hibernate不同"><span class="toc-number">2.</span> <span class="toc-text">1.6.11与hibernate不同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、SqlSession的实现类即DefaultSqlSession，此对象中对操作数据库实质上用的是Executor"><span class="toc-number">3.</span> <span class="toc-text">5、SqlSession的实现类即DefaultSqlSession，此对象中对操作数据库实质上用的是Executor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4Mapper动态代理方式"><span class="toc-number">4.</span> <span class="toc-text">2.4Mapper动态代理方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口定义有如下特点："><span class="toc-number">5.</span> <span class="toc-text">接口定义有如下特点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-6总结"><span class="toc-number">6.</span> <span class="toc-text">2.4.6总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_SqlMapConfig-xml配置文件"><span class="toc-number"></span> <span class="toc-text">3. SqlMapConfig.xml配置文件</span></a>
+		
+		</div>
+		
+		<h3 id="1-6-10Mybatis解决jdbc编程的问题">1.6.10Mybatis解决jdbc编程的问题</h3><p>1、数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。<br>解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。<br>2、Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。<br>解决：将Sql语句配置在XXXXmapper.xml文件中与java代码分离。<br>3、向sql语句传参数麻烦，因为sql语句的where条件不一定，可能多也可能少，占位符需要和参数一一对应。<br>解决：Mybatis自动将java对象映射至sql语句，通过statement中的parameterType定义输入参数的类型。<br>4、对结果集解析麻烦，sql变化导致解析代码变化，且解析前需要遍历，如果能将数据库记录封装成pojo对象解析比较方便。<br>解决：Mybatis自动将sql执行结果映射至java对象，通过statement中的resultType定义输出结果的类型。</p>
+<h3 id="1-6-11与hibernate不同">1.6.11与hibernate不同</h3><p>Mybatis和hibernate不同，它不完全是一个ORM框架，因为MyBatis需要程序员自己编写Sql语句，不过mybatis可以通过XML或注解方式灵活配置要运行的sql语句，并将java对象和sql语句映射生成最终执行的sql，最后将sql执行的结果再映射生成java对象。</p>
+<p>Mybatis学习门槛低，简单易学，程序员直接编写原生态sql，可严格控制sql执行性能，灵活度高，非常适合对关系数据模型要求不高的软件开发，例如互联网软件、企业运营类软件等，因为这类软件需求变化频繁，一但需求变化要求成果输出迅速。但是灵活的前提是mybatis无法做到数据库无关性，如果需要实现支持多种数据库的软件则需要自定义多套sql映射文件，工作量大。</p>
+<p>Hibernate对象/关系映射能力强，数据库无关性好，对于关系模型要求高的软件（例如需求固定的定制化软件）如果用hibernate开发可以节省很多代码，提高效率。但是Hibernate的学习门槛高，要精通门槛更高，而且怎么设计O/R映射，在性能和对象模型之间如何权衡，以及怎样用好Hibernate需要具有很强的经验和能力才行。<br>总之，按照用户的需求在有限的资源环境下只要能做出维护性、扩展性良好的软件架构都是好架构，所以框架只有适合才是最好。 </p>
+<h3 id="5、SqlSession的实现类即DefaultSqlSession，此对象中对操作数据库实质上用的是Executor">5、SqlSession的实现类即DefaultSqlSession，此对象中对操作数据库实质上用的是Executor</h3><p>结论：<br>    每个线程都应该有它自己的SqlSession实例。SqlSession的实例不能共享使用，它也是线程不安全的。因此最佳的范围是请求或方法范围。绝对不能将SqlSession实例的引用放在一个类的静态字段或实例字段中。<br>    打开一个 SqlSession；使用完毕就要关闭它。通常把这个关闭操作放到 finally 块中以确保每次都能执行关闭。如下：</p>
+<h3 id="2-4Mapper动态代理方式">2.4Mapper动态代理方式</h3><p>2.4.1实现原理<br>    Mapper接口开发方法只需要程序员编写Mapper接口（相当于Dao接口），由Mybatis框架根据接口定义创建接口的动态代理对象，代理对象的方法体同上边Dao接口实现类方法。<br>Mapper接口开发需要遵循以下规范：<br>1、Mapper.xml文件中的namespace与mapper接口的类路径相同。<br>2、  Mapper接口方法名和Mapper.xml中定义的每个statement的id相同<br>3、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql 的parameterType的类型相同<br>4、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同<br>2.4.2Mapper.xml(映射文件)<br>    定义mapper映射文件UserMapper.xml（内容同Users.xml），需要修改namespace的值为 UserMapper接口路径。将UserMapper.xml放在classpath 下mapper目录 下。    </p>
+<h3 id="接口定义有如下特点：">接口定义有如下特点：</h3><p>1、Mapper接口方法名和Mapper.xml中定义的statement的id相同<br>2、Mapper接口方法的输入参数类型和mapper.xml中定义的statement的parameterType的类型相同<br>3、Mapper接口方法的输出参数类型和mapper.xml中定义的statement的resultType的类型相同    </p>
+<h3 id="2-4-6总结">2.4.6总结</h3><p>selectOne和selectList<br>动态代理对象调用sqlSession.selectOne()和sqlSession.selectList()是根据mapper接口方法的返回值决定，如果返回list则调用selectList方法，如果返回单个对象则调用selectOne方法。</p>
+<p>namespace<br>mybatis官方推荐使用mapper代理方法开发mapper接口，程序员不用编写mapper接口实现类，使用mapper代理方法时，输入参数可以使用pojo包装对象或map对象，保证dao的通用性。</p>
+<h2 id="3-_SqlMapConfig-xml配置文件">3. SqlMapConfig.xml配置文件</h2><p>3.1配置内容<br>SqlMapConfig.xml中配置的内容和顺序如下：</p>
+<p>properties（属性）<br>settings（全局配置参数）<br>typeAliases（类型别名）<br>typeHandlers（类型处理器）<br>objectFactory（对象工厂）<br>plugins（插件）<br>environments（环境集合属性对象）<br>environment（环境子属性对象）<br>transactionManager（事务管理）<br>dataSource（数据源）<br>mappers（映射器）</p>
+<p>3.4.2自定义别名：<br>在SqlMapConfig.xml中配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 单个别名定义 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">typeAlias</span> <span class="attribute">alias</span>=<span class="value">"user"</span> <span class="attribute">type</span>=<span class="value">"cn.itcast.mybatis.po.User"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">package</span> <span class="attribute">name</span>=<span class="value">"cn.itcast.mybatis.po"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">package</span> <span class="attribute">name</span>=<span class="value">"其它包"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Mybatis一级缓存的作用域是同一个SqlSession，在同一个sqlSession中两次执行相同的sql语句，第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。当一个sqlSession结束后该sqlSession中的一级缓存也就不存在了。Mybatis默认开启一级缓存。</p>
+<p>Mybatis二级缓存是多个SqlSession共享的，其作用域是mapper的同一个namespace，不同的sqlSession两次执行相同namespace下的sql语句且向sql中传递参数也相同即最终执行相同的sql语句，第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。Mybatis默认没有开启二级缓存需要在setting全局参数中配置开启二级缓存。</p>
+<p>二级缓存区域是根据mapper的namespace划分的，相同namespace的mapper查询数据放在同一个区域，如果使用mapper代理方法每个mapper的namespace都不同，此时可以理解为二级缓存区域是根据mapper划分。<br>每次查询会先从缓存区域找，如果找不到从数据库查询，查询到数据将数据写入缓存。<br>Mybatis内部存储缓存使用一个HashMap，key为hashCode+sqlId+Sql语句。value为从查询出来映射生成的java对象<br>sqlSession执行insert、update、delete等操作commit提交后会清空缓存区域。</p>
+<p>6.3.6刷新缓存<br>在mapper的同一个namespace中，如果有其它insert、update、delete操作数据后需要刷新缓存，如果不执行刷新缓存会出现脏读。</p>
+<p> 设置statement配置中的flushCache=”true” 属性，默认情况下为true即刷新缓存，如果改成false则不会刷新。使用缓存时如果手动修改数据库表中的查询数据会出现脏读。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mybatis/">Mybatis</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.zhoukai.xyz/2015/04/29/Mybatis/" data-title="Mybatis | Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/29/SpringMVC/"  title="SpringMVC">
+ <strong>下一篇：</strong><br/> 
+ <span>SpringMVC
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-10Mybatis解决jdbc编程的问题"><span class="toc-number">1.</span> <span class="toc-text">1.6.10Mybatis解决jdbc编程的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-11与hibernate不同"><span class="toc-number">2.</span> <span class="toc-text">1.6.11与hibernate不同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、SqlSession的实现类即DefaultSqlSession，此对象中对操作数据库实质上用的是Executor"><span class="toc-number">3.</span> <span class="toc-text">5、SqlSession的实现类即DefaultSqlSession，此对象中对操作数据库实质上用的是Executor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4Mapper动态代理方式"><span class="toc-number">4.</span> <span class="toc-text">2.4Mapper动态代理方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口定义有如下特点："><span class="toc-number">5.</span> <span class="toc-text">接口定义有如下特点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-6总结"><span class="toc-number">6.</span> <span class="toc-text">2.4.6总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_SqlMapConfig-xml配置文件"><span class="toc-number"></span> <span class="toc-text">3. SqlMapConfig.xml配置文件</span></a>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Hadoop/" title="Hadoop">Hadoop<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hadoop-集群/" title="Hadoop 集群">Hadoop 集群<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql-数据库/" title="Mysql 数据库">Mysql 数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Pig/" title="Pig">Pig<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SQL/" title="SQL">SQL<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Solr-Lucene/" title="Solr Lucene">Solr Lucene<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Storm/" title="Storm">Storm<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/lucene/" title="lucene">lucene<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/redis-安装/" title="redis 安装">redis 安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/概念/" title="概念">概念<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/电商/" title="电商">电商<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/页面静态化/" title="页面静态化">页面静态化<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/高并发/" title="高并发">高并发<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/高并发/" title="高并发">高并发<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/概念/" title="概念">概念<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis/" title="redis">redis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/lucene/" title="lucene">lucene<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/购物车/" title="购物车">购物车<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Storm/" title="Storm">Storm<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SQL/" title="SQL">SQL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mybatis/" title="Mybatis">Mybatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/静态化/" title="静态化">静态化<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://blog.zhoukai.xyz/about" target="_blank" title="dishui">dishui</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

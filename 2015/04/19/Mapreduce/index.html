@@ -4,40 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Pig | Java Hadoop Storm Spark</title>
+    <title>Java Hadoop Storm Spark</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="dishui">
     
 
     
-    <meta name="description" content="Pig
-安装Pig 将pig添加到环境变量当中
-
-pig使用 首先将数据库中的数据导入到HDFS上
-
-
-1234567891011121314151617sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-">
+    <meta name="description" content="学习总结 知识管理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pig">
-<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/12/Pig/index.html">
+<meta property="og:title" content="Java Hadoop Storm Spark">
+<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/19/Mapreduce/index.html">
 <meta property="og:site_name" content="Java Hadoop Storm Spark">
-<meta property="og:description" content="Pig
-安装Pig 将pig添加到环境变量当中
-
-pig使用 首先将数据库中的数据导入到HDFS上
-
-
-1234567891011121314151617sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-">
+<meta property="og:description" content="学习总结 知识管理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pig">
-<meta name="twitter:description" content="Pig
-安装Pig 将pig添加到环境变量当中
-
-pig使用 首先将数据库中的数据导入到HDFS上
-
-
-1234567891011121314151617sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-">
+<meta name="twitter:title" content="Java Hadoop Storm Spark">
+<meta name="twitter:description" content="学习总结 知识管理">
 
     
     <link rel="alternative" href="/atom.xml" title="Java Hadoop Storm Spark" type="application/atom+xml">
@@ -96,14 +78,14 @@ pig使用 首先将数据库中的数据导入到HDFS上
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/12/Pig/" title="Pig" itemprop="url">Pig</a>
+      <a href="/2015/04/19/Mapreduce/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://blog.zhoukai.xyz/about" title="dishui" target="_blank" itemprop="author">dishui</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-12T04:10:59.000Z" itemprop="datePublished"> 发表于 2015-04-12</time>
+    <time datetime="2015-04-19T01:12:01.000Z" itemprop="datePublished"> 发表于 2015-04-19</time>
     
   </p>
 </header>
@@ -112,25 +94,14 @@ pig使用 首先将数据库中的数据导入到HDFS上
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pig"><span class="toc-number">1.</span> <span class="toc-text">Pig</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h3 id="Pig">Pig</h3><ol>
-<li><p>安装Pig<br> 将pig添加到环境变量当中</p>
-</li>
-<li><p>pig使用<br> 首先将数据库中的数据导入到HDFS上</p>
-</li>
-</ol>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sqoop <span class="keyword">import</span> --connect <span class="string">jdbc:</span><span class="string">mysql:</span><span class="comment">//192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-dir '/sqoop/td'</span></span><br><span class="line">sqoop <span class="keyword">import</span> --connect <span class="string">jdbc:</span><span class="string">mysql:</span><span class="comment">//192.168.1.10:3306/itcast --username root --password 123  --table user_info --target-dir '/sqoop/ui'</span></span><br><span class="line"></span><br><span class="line">td = load <span class="string">'/sqoop/td'</span> using PigStorage(<span class="string">','</span>) <span class="keyword">as</span> (<span class="string">id:</span><span class="typename">long</span>, <span class="string">account:</span>chararray, <span class="string">income:</span><span class="typename">double</span>, <span class="string">expenses:</span><span class="typename">double</span>, <span class="string">time:</span>chararray);</span><br><span class="line">ui = load <span class="string">'/sqoop/ui'</span> using PigStorage(<span class="string">','</span>) <span class="keyword">as</span> (<span class="string">id:</span><span class="typename">long</span>, <span class="string">account:</span>chararray, <span class="string">name:</span>chararray, <span class="string">age:</span><span class="typename">int</span>);</span><br><span class="line"></span><br><span class="line">td1 = foreach td generate account, income, expenses, income-expenses <span class="keyword">as</span> surplus;</span><br><span class="line"></span><br><span class="line">td2 = group td1 by account;</span><br><span class="line"></span><br><span class="line">td3 = foreach td2 generate group <span class="keyword">as</span> account, SUM(td1.income) <span class="keyword">as</span> income, SUM(td1.expenses) <span class="keyword">as</span> expenses, SUM(td1.surplus) <span class="keyword">as</span> surplus;</span><br><span class="line"></span><br><span class="line">tu = join td3 by account, ui by account;</span><br><span class="line"></span><br><span class="line">result = foreach tu generate <span class="string">td3:</span>:account <span class="keyword">as</span> account, <span class="string">ui:</span>:name, <span class="string">td3:</span>:income, <span class="string">td3:</span>:expenses, <span class="string">td3:</span>:surplus;</span><br><span class="line"></span><br><span class="line">store result into <span class="string">'/result'</span> using PigStorage(<span class="string">','</span>);</span><br></pre></td></tr></table></figure>  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Pig/">Pig</a>
-</div>
 
 
 </div>
@@ -139,7 +110,7 @@ pig使用 首先将数据库中的数据导入到HDFS上
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://blog.zhoukai.xyz/2015/04/12/Pig/" data-title="Pig | Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
+	  <div data-url="http://blog.zhoukai.xyz/2015/04/19/Mapreduce/" data-title="Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -153,18 +124,18 @@ pig使用 首先将数据库中的数据导入到HDFS上
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/04/18/Storm配置详解/" title="Storm配置详解">
+ <a href="/2015/04/19/hadoop_codes/" title="Hadoop_codes">
   <strong>上一篇：</strong><br/>
   <span>
-  Storm配置详解</span>
+  Hadoop_codes</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/04/10/Hadoop集群搭建/"  title="Hadoop集群搭建">
+<a href="/2015/04/19/SQL/"  title="SQL">
  <strong>下一篇：</strong><br/> 
- <span>Hadoop集群搭建
+ <span>SQL
 </span>
 </a>
 </div>
@@ -179,7 +150,7 @@ pig使用 首先将数据库中的数据导入到HDFS上
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pig"><span class="toc-number">1.</span> <span class="toc-text">Pig</span></a></li></ol>
+ 
  
   </div>
 
