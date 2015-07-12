@@ -4,25 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | Java Hadoop Storm Spark</title>
+    <title>Java Hadoop Storm Spark</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="dishui">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+    <meta name="description" content="title: “大型分布式”date: 2015-7-5tags: “分布式”
+categories: 第一题：用tcpdump、tshark等工具来来分析arp请求报文和应答报文，对照截获的数据，做出ARP请求应答的逻辑分析，建议本机安装虚拟机来进行测试和实践。
+第二题：如果一个VLAN交换机的所有端口都是Trunk模式，则意味着什么？
+第三题：说明下NAT在Linux中实现的原理和大致做法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/19/hello-world/index.html">
+<meta property="og:title" content="Java Hadoop Storm Spark">
+<meta property="og:url" content="http://blog.zhoukai.xyz/2015/07/12/大型分布式-2/index.html">
 <meta property="og:site_name" content="Java Hadoop Storm Spark">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta property="og:description" content="title: “大型分布式”date: 2015-7-5tags: “分布式”
+categories: 第一题：用tcpdump、tshark等工具来来分析arp请求报文和应答报文，对照截获的数据，做出ARP请求应答的逻辑分析，建议本机安装虚拟机来进行测试和实践。
+第二题：如果一个VLAN交换机的所有端口都是Trunk模式，则意味着什么？
+第三题：说明下NAT在Linux中实现的原理和大致做法。">
+<meta property="og:updated_time" content="2015-07-04T16:20:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Java Hadoop Storm Spark">
+<meta name="twitter:description" content="title: “大型分布式”date: 2015-7-5tags: “分布式”
+categories: 第一题：用tcpdump、tshark等工具来来分析arp请求报文和应答报文，对照截获的数据，做出ARP请求应答的逻辑分析，建议本机安装虚拟机来进行测试和实践。
+第二题：如果一个VLAN交换机的所有端口都是Trunk模式，则意味着什么？
+第三题：说明下NAT在Linux中实现的原理和大致做法。">
 
     
     <link rel="alternative" href="/atom.xml" title="Java Hadoop Storm Spark" type="application/atom+xml">
@@ -81,14 +88,14 @@ Quick">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/19/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2015/07/12/大型分布式-2/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://blog.zhoukai.xyz/about" title="dishui" target="_blank" itemprop="author">dishui</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-19T04:27:03.112Z" itemprop="datePublished"> 发表于 2015-04-19</time>
+    <time datetime="2015-07-12T01:34:28.207Z" itemprop="datePublished"> 发表于 2015-07-12</time>
     
   </p>
 </header>
@@ -97,20 +104,27 @@ Quick">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#categories:"><span class="toc-number">1.</span> <span class="toc-text">categories: </span></a></li></ol>
 		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;</span><br></pre></td></tr></table></figure>
+		<p>title: “大型分布式”<br>date: 2015-7-5<br>tags: “分布式”</p>
+<h2 id="categories:">categories: </h2><p>第一题：<br>用tcpdump、tshark等工具来来分析arp请求报文和应答报文，对照截获的数据，做出ARP请求应答的逻辑分析，建议本机安装虚拟机来进行测试和实践。</p>
+<p>第二题：<br>如果一个VLAN交换机的所有端口都是Trunk模式，则意味着什么？</p>
+<p>第三题：<br>说明下NAT在Linux中实现的原理和大致做法。</p>
+<p>第四题：<br>路由的原理和机制是什么？解释下Linux里 ip route命令的结果。</p>
+<p>第五题：<br>说说你所理解高性能网络编程的几个重要因素和他们之间的相互关系</p>
+<p>第六题：<br>实现PPT中的最后那个案例，用Netty+Zookeeper写一个分布式系统，其中需求和要点如下：</p>
+<ol>
+<li>每个节点是一个TCP Server，采用Netty NIO实现，Server有一个Name，全局唯一，比如Leader-1,Leader-2，节点的监听IP、端口、以及TCP参数等配置信息在ZK的Config路径下保存，当节点启动的时候，根据其Name，去查找自己的配置信息，并生成为本地config目录下的配置文件 Name.properities （如Leader-1.properties），然后节点从配置文件中加载参数并启动，当ZK无法连接的时候，也仍然能通过读取本地配置文件而启动。</li>
+<li>节点启动成功以后，注册自己到Node路径下，并监听Node路径中其他节点的上线和下线行为，当节点停止后，对应的ZK路径消失，其他节点获取这一通知。</li>
+<li>当节点监听到有其他节点上线，则决定是否连接此节点，连接规则为通过Name比较，Name小的主动连接Name大的节点，一旦节点连接成功，则开始发生请求数据包，请求数据包的格式为二进制格式，具体为2个字节的包长度，1个字节的包类型，然后是数据，数据内容为本地随机一些文件的内容即可，接收方则将文件按照发送方的Name目录分别存放接受的文件，若重复，则覆盖即可。并在内存中记录最近接受的10个文件信息（节点、文件名、文件大小、接受时间）</li>
+<li>实现一个简单的命令行工具，该工具对集群进行远程控制，原理是通过在ZK的路径 command下创建具体节点的路径，比如commandsde1 ，表示发送给node1，命令的具体内容则在Path的Data里存放，比如 list files，此命令输出如下内容：<br>Node    file                size     process     time<br>Node1  aaa.txt         6666      50%           5s ago<br>Node2  bbb.txt         6666      80%           5s ago</li>
+</ol>
+<p>目前要求实现两个命令，一个是上述的显示某个节点收到的文件信息<br>一个是Kill节点的命令，Kill节点命令，要求与该节点的所有节点发送完当前正在发送的文件，不再发送新的文件，被Kill的节点也把自己要发送给其他节点的文件都发送完成后，才安全的自杀。</p>
+<p>作业的要求，程序可以解压在任何目录执行，里面需要有Bat命令，至少有一个Bat命令，双击以后，将所有节点（假设5个节点）一起启动，节点名称分别为leader-1,leader-2一直到leader-5，程序目录结构为<br>HOME<br>    Conf 配置信息<br>Data 存放自己本地的模拟文件和接受的文件<br>Lib 所有依赖的LIB<br>Bin  启动脚本的存放地方</p>
+<p>ZK采用3.4.6的版本，命令行工具里面有一个命令 是init方法，再空白的ZKServer上初始化写入所有节点的配置信息，以便程序能启动。</p>
+<p>本作业的其他一些提示：<br>节点启动的时候，可以随机在data目录下生成100个随机文本文件，内容长度随机控制在10K到10M，内容最后都为You are Best! 这些是待发送文件。<br>数据报文可以分为 文件开始传输，文件传输，文件传输完成、节点Shutdown等几种类型，其中文件传输完成的报文为发送文件最后一段内容时候的一个特殊报文，告诉对方，文件发送完成，文件开始传输报文则告诉对方，文件名，文件大小等信息，这样，对方可以知道还有多少内容等等接受。每个节点只能给另外一个节点每次发送一个文件，发送完成后再发下一个，但可以同时给几个节点发送文件。<br>当某个节点收到Shutdown指令的时候，需要让他周边的所有节点知道他要Shutdown了，不会在准备发送新的文件（默认情况下，当一个文件发送完成，会继续发送下一个），这样此节点才可能有机会安全关闭</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -123,7 +137,7 @@ Quick">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://blog.zhoukai.xyz/2015/04/19/hello-world/" data-title="Hello World | Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
+	  <div data-url="http://blog.zhoukai.xyz/2015/07/12/大型分布式-2/" data-title="Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,7 +151,7 @@ Quick">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/04/19/快捷键/" title="Eclipse快捷键">
+ <a href="/2015/07/12/快捷键/" title="Eclipse快捷键">
   <strong>上一篇：</strong><br/>
   <span>
   Eclipse快捷键</span>
@@ -146,9 +160,9 @@ Quick">
 
 
 <div class="next">
-<a href="/2015/04/19/高并发/"  title="高并发">
+<a href="/2015/07/12/hello-world/"  title="Hello World">
  <strong>下一篇：</strong><br/> 
- <span>高并发
+ <span>Hello World
 </span>
 </a>
 </div>
@@ -163,7 +177,7 @@ Quick">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#categories:"><span class="toc-number">1.</span> <span class="toc-text">categories: </span></a></li></ol>
  
   </div>
 

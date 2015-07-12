@@ -17,7 +17,7 @@
 pig使用 首先将数据库中的数据导入到HDFS上
 
 
-1234567891011121314151617sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-">
+1sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-dir &amp;#39;/sqoop/td&amp;#39;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pig">
 <meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/12/Pig/index.html">
@@ -28,7 +28,8 @@ pig使用 首先将数据库中的数据导入到HDFS上
 pig使用 首先将数据库中的数据导入到HDFS上
 
 
-1234567891011121314151617sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-">
+1sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-dir &amp;#39;/sqoop/td&amp;#39;&amp;">
+<meta property="og:updated_time" content="2015-04-12T04:13:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pig">
 <meta name="twitter:description" content="Pig
@@ -37,7 +38,7 @@ pig使用 首先将数据库中的数据导入到HDFS上
 pig使用 首先将数据库中的数据导入到HDFS上
 
 
-1234567891011121314151617sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-">
+1sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-dir &amp;#39;/sqoop/td&amp;#39;&amp;">
 
     
     <link rel="alternative" href="/atom.xml" title="Java Hadoop Storm Spark" type="application/atom+xml">
@@ -122,7 +123,7 @@ pig使用 首先将数据库中的数据导入到HDFS上
 <li><p>pig使用<br> 首先将数据库中的数据导入到HDFS上</p>
 </li>
 </ol>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sqoop <span class="keyword">import</span> --connect <span class="string">jdbc:</span><span class="string">mysql:</span><span class="comment">//192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-dir '/sqoop/td'</span></span><br><span class="line">sqoop <span class="keyword">import</span> --connect <span class="string">jdbc:</span><span class="string">mysql:</span><span class="comment">//192.168.1.10:3306/itcast --username root --password 123  --table user_info --target-dir '/sqoop/ui'</span></span><br><span class="line"></span><br><span class="line">td = load <span class="string">'/sqoop/td'</span> using PigStorage(<span class="string">','</span>) <span class="keyword">as</span> (<span class="string">id:</span><span class="typename">long</span>, <span class="string">account:</span>chararray, <span class="string">income:</span><span class="typename">double</span>, <span class="string">expenses:</span><span class="typename">double</span>, <span class="string">time:</span>chararray);</span><br><span class="line">ui = load <span class="string">'/sqoop/ui'</span> using PigStorage(<span class="string">','</span>) <span class="keyword">as</span> (<span class="string">id:</span><span class="typename">long</span>, <span class="string">account:</span>chararray, <span class="string">name:</span>chararray, <span class="string">age:</span><span class="typename">int</span>);</span><br><span class="line"></span><br><span class="line">td1 = foreach td generate account, income, expenses, income-expenses <span class="keyword">as</span> surplus;</span><br><span class="line"></span><br><span class="line">td2 = group td1 by account;</span><br><span class="line"></span><br><span class="line">td3 = foreach td2 generate group <span class="keyword">as</span> account, SUM(td1.income) <span class="keyword">as</span> income, SUM(td1.expenses) <span class="keyword">as</span> expenses, SUM(td1.surplus) <span class="keyword">as</span> surplus;</span><br><span class="line"></span><br><span class="line">tu = join td3 by account, ui by account;</span><br><span class="line"></span><br><span class="line">result = foreach tu generate <span class="string">td3:</span>:account <span class="keyword">as</span> account, <span class="string">ui:</span>:name, <span class="string">td3:</span>:income, <span class="string">td3:</span>:expenses, <span class="string">td3:</span>:surplus;</span><br><span class="line"></span><br><span class="line">store result into <span class="string">'/result'</span> using PigStorage(<span class="string">','</span>);</span><br></pre></td></tr></table></figure>  
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table trade_detail --target-dir &#39;/sqoop/td&#39;&#10;sqoop import --connect jdbc:mysql://192.168.1.10:3306/itcast --username root --password 123  --table user_info --target-dir &#39;/sqoop/ui&#39;&#10;&#10;td = load &#39;/sqoop/td&#39; using PigStorage(&#39;,&#39;) as (id:long, account:chararray, income:double, expenses:double, time:chararray);&#10;ui = load &#39;/sqoop/ui&#39; using PigStorage(&#39;,&#39;) as (id:long, account:chararray, name:chararray, age:int);&#10;&#10;td1 = foreach td generate account, income, expenses, income-expenses as surplus;&#10;&#10;td2 = group td1 by account;&#10;&#10;td3 = foreach td2 generate group as account, SUM(td1.income) as income, SUM(td1.expenses) as expenses, SUM(td1.surplus) as surplus;&#10;&#10;tu = join td3 by account, ui by account;&#10;&#10;result = foreach tu generate td3::account as account, ui::name, td3::income, td3::expenses, td3::surplus;&#10;&#10;store result into &#39;/result&#39; using PigStorage(&#39;,&#39;);</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">

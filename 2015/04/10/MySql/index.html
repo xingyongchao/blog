@@ -31,6 +31,7 @@ UTF-8 在数据库中,叫utf8;
 MYSQL中预设管理员名称为 rootSQL
 DDL  Data Definition Language  || create alter drop
 DML  Data Manipulation Language |">
+<meta property="og:updated_time" content="2015-04-10T03:00:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql">
 <meta name="twitter:description" content="[TOC]
@@ -254,7 +255,7 @@ datatime 在保存时如果不指定 值, 那么将会插入一个null.
 </code></pre><p>2修改job列，使其长度为60。</p>
 <pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> employee modify job <span class="built_in">VARCHAR</span>(<span class="number">60</span>);</span>
 </code></pre><p>3删除gender列。</p>
-<pre><code><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> employee <span class="keyword">drop</span> gender;</span>
+<pre><code>alter table employee drop <span class="keyword">gender</span>;
 </code></pre><p>4表名改为user。</p>
 <pre><code><span class="operator"><span class="keyword">rename</span> <span class="keyword">table</span> employee <span class="keyword">to</span> <span class="keyword">user</span>;</span>
 </code></pre><p>5修改表的字符集为utf8</p>
@@ -266,12 +267,12 @@ datatime 在保存时如果不指定 值, 那么将会插入一个null.
 <p>insert into 表名[(列名1,列名2…)] values (值1,值2…);</p>
 <p>1.插入一条数据</p>
 <pre><code><span class="number">1</span>&gt;指定要插入那些列
-    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span><span class="params">(id,name,email)</span> <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'tom'</span>,<span class="string">'tom@itcast.cn'</span>)</span></span>; 
-    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span><span class="params">(id,email)</span> <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'tom2@itcast.cn'</span>)</span></span>; 实验非空约束
-    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span><span class="params">(id,name,email)</span> <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'jerry'</span>,<span class="string">'tom@itcast.cn'</span>)</span></span>; 实验唯一约束
+    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span>(<span class="params">id,name,email</span>) <span class="title">values</span>(<span class="params"><span class="keyword">null</span>,<span class="string">'tom'</span>,<span class="string">'tom@itcast.cn'</span></span>)</span>; 
+    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span>(<span class="params">id,email</span>) <span class="title">values</span>(<span class="params"><span class="keyword">null</span>,<span class="string">'tom2@itcast.cn'</span></span>)</span>; 实验非空约束
+    <span class="function">insert <span class="keyword">into</span> <span class="title">t_user</span>(<span class="params">id,name,email</span>) <span class="title">values</span>(<span class="params"><span class="keyword">null</span>,<span class="string">'jerry'</span>,<span class="string">'tom@itcast.cn'</span></span>)</span>; 实验唯一约束
 <span class="number">2</span>&gt;不指定插入哪些列, 需要指定每一列的值
-    <span class="function">insert <span class="keyword">into</span> t_user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'jack'</span>,<span class="string">'jack@itcast.cn'</span>)</span></span>; 
-    <span class="function">insert <span class="keyword">into</span> t_user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'肉丝'</span>,<span class="string">'rose@itcast.cn'</span>)</span></span>; 
+    <span class="function">insert <span class="keyword">into</span> t_user <span class="title">values</span>(<span class="params"><span class="keyword">null</span>,<span class="string">'jack'</span>,<span class="string">'jack@itcast.cn'</span></span>)</span>; 
+    <span class="function">insert <span class="keyword">into</span> t_user <span class="title">values</span>(<span class="params"><span class="keyword">null</span>,<span class="string">'肉丝'</span>,<span class="string">'rose@itcast.cn'</span></span>)</span>; 
 </code></pre><p> SHOW VARIABLES LIKE ‘%character%’;    ==&gt; 查看字符编码配置</p>
 <p>| character_set_client     | gbk   客户端的编码<br>           |<br>| character_set_connection | utf8   客户端连接的编码<br>           |<br>| character_set_database   | utf8   数据库默认使用的编码<br>           |<br>| character_set_filesystem | BINARY  文件系统存放时使用的编码<br>           |<br>| character_set_results    | gbk    结果集的编码<br>           |<br>| character_set_server     | utf8    服务器编码<br>           |<br>| character_set_system     | utf8    内部系统编码</p>
 <p>结论:     如果使用cmd 命令控制台操作 数据库,<br>注意character_set_client 和  character_set_results  需要设置成GBK, 因为我们的命令控制航使用gbk码表显示中文.<br>使用如下命令设置:<br>方式1: 每次重新连接数据库都要重新设置.<br>set  character_set_client=gbk<br>set  character_set_results=gbk<br>方式2: 永久性修改 (不推荐)<br>修改my.ini<br>    C:\Program Files (x86)\MySQL\MySQL Server 5.5\my.ini<br>修改<br>        [client]</p>
@@ -328,7 +329,7 @@ datatime 在保存时如果不指定 值, 那么将会插入一个null.
 <p>1.2　查询指定列</p>
 <p>select sid, sname, age, gender from stu;</p>
 <p>2.1　条件查询介绍<br>条件查询就是在查询时给出WHERE子句，在WHERE子句中可以使用如下运算符及关键字：<br>    ?   =、!=、&lt;&gt;、&lt;、&lt;=、&gt;、&gt;=；<br>    ?   BETWEEN…AND；<br>    ?   IN(SET)；<br>    ?   IS NULL；<br>    ?   AND；<br>    ?   OR；<br>    ?   NOT；<br>2.2　查询性别为女，并且年龄小于50的记录</p>
-<pre><code><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> gender=<span class="string">'female'</span> <span class="keyword">and</span> age &lt; <span class="number">50</span>;</span>
+<pre><code>select * from stu where <span class="keyword">gender</span>='female' and age &lt; 50;
 </code></pre><p>2.3　查询学号为S_1001，或者姓名为liSi的记录</p>
 <pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sid = <span class="string">'S_1001'</span> <span class="keyword">or</span> sname=<span class="string">'liSi'</span>;</span>
 
@@ -352,10 +353,10 @@ datatime 在保存时如果不指定 值, 那么将会插入一个null.
 <p>2.7 查询年龄在20到40之间的学生记录</p>
 <pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> age <span class="keyword">between</span> <span class="number">20</span> <span class="keyword">and</span> <span class="number">40</span>;</span>
 </code></pre><p>2.8查询性别非男的学生记录</p>
-<pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> <span class="keyword">not</span> gender = <span class="string">'male'</span>;</span> 
-<span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span>  gender != <span class="string">'male'</span>;</span> 
-<span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span>  gender &lt;&gt; <span class="string">'male'</span>;</span> 
-<span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span>  gender <span class="keyword">not</span> <span class="keyword">in</span> (<span class="string">'male'</span>);</span> 
+<pre><code>SELECT * from stu where not <span class="keyword">gender</span> = 'male'; 
+SELECT * from stu where  <span class="keyword">gender</span> != 'male'; 
+SELECT * from stu where  <span class="keyword">gender</span> &lt;&gt; 'male'; 
+SELECT * from stu where  <span class="keyword">gender</span> not in ('male'); 
 </code></pre><p>2.9 查询姓名不为null的学生记录</p>
 <pre><code><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">from</span> stu <span class="keyword">where</span> sname <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</span>
 </code></pre><p>//—————————————————————————————————————————————————<br>where 字段 like ‘表达式’;<br>% =&gt; 通配 通配任意个字符.<br><em> =&gt; 通配 通配单个字符.<br>说明: LIKE 条件后 根模糊查询表达式,  “</em>“==&gt; 代表一个任意字符</p>

@@ -37,10 +37,11 @@ eclipse的帮助文档
 
 
 案例：从文件中查找，找出文件内容包含spring字样的文件。方案一：目测方案二：顺序扫描，效率很低。方案三：先把文章读取到程序里，根据空格对文章的内容进行分割（分词）形成一个词语列表。在查找内容时，直接去列表查找。找到列表中的词后，根据这个词就能找到相应的文章。这个过程就叫做全文检索的过程">
-<meta property="og:image" content="../pic/lucene流程图.png">
-<meta property="og:image" content="../pic/lucene索引.png">
-<meta property="og:image" content="../pic/lucene_indexSeracher.png">
-<meta property="og:image" content="../pic/lucene_analyzer.png">
+<meta property="og:image" content="http://blog.zhoukai.xyz/../pic/lucene流程图.png">
+<meta property="og:image" content="http://blog.zhoukai.xyz/../pic/lucene索引.png">
+<meta property="og:image" content="http://blog.zhoukai.xyz/../pic/lucene_indexSeracher.png">
+<meta property="og:image" content="http://blog.zhoukai.xyz/../pic/lucene_analyzer.png">
+<meta property="og:updated_time" content="2015-04-18T15:45:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lucene">
 <meta name="twitter:description" content="全文检索的应用场景
@@ -189,9 +190,9 @@ eclipse的帮助文档
 <h4 id="创建索引目录">创建索引目录</h4><blockquote>
 <p>创建索引目录 F:\develop\lucene\indexdata，该目录存放创建的索引文件。</p>
 </blockquote>
-<h3 id="Document和Field">Document和Field</h3><pre><code>索引的目的是为了搜索，索引前要对搜索的内容创建成Document和<span class="keyword">Field</span>。Document文档是Lucene搜索的单位，最终要将文档中的数据展示给用户，文档中包括多个<span class="keyword">Field</span>，在设计文档对象时，可以将一个Document对应关系数据库的一条记录，字段对应<span class="keyword">Field</span>，但是要注意：Document结构属于NOSql（非关系），不同的Document包括不同的<span class="keyword">Field</span>，建议将相同类型数据的Document保持<span class="keyword">Field</span>一致，方便管理维护，避免将不同类型<span class="keyword">Field</span>数据融合在一个Document中。
+<h3 id="Document和Field">Document和Field</h3><pre><code>索引的目的是为了搜索，索引前要对搜索的内容创建成Document和<span class="preprocessor">Field</span>。Document文档是Lucene搜索的单位，最终要将文档中的数据展示给用户，文档中包括多个<span class="preprocessor">Field</span>，在设计文档对象时，可以将一个Document对应关系数据库的一条记录，字段对应<span class="preprocessor">Field</span>，但是要注意：Document结构属于NOSql（非关系），不同的Document包括不同的<span class="preprocessor">Field</span>，建议将相同类型数据的Document保持<span class="preprocessor">Field</span>一致，方便管理维护，避免将不同类型<span class="preprocessor">Field</span>数据融合在一个Document中。
 比如：
-文件信息Document，<span class="keyword">Field</span>包括：文件名称、文件类型、文件大小、文件路径、文件内容等，避免加入非文件信息<span class="keyword">Field</span>。
+文件信息Document，<span class="preprocessor">Field</span>包括：文件名称、文件类型、文件大小、文件路径、文件内容等，避免加入非文件信息<span class="preprocessor">Field</span>。
 </code></pre><h4 id="Field属性">Field属性</h4><p>Field是文档中的域，包括Field名和Field值两部分，一个文档可以包括多个Field，Document只是Field的一个承载体，Field值即为要索引的内容，也是要搜索的内容。</p>
 <p>1.是否分析(tokenized)<br>是：将Field值分析出语汇单元即作分词处理，将词进行索引<br>比如：商品名称、商品简介等，这些内容用户要输入关键字搜索，由于搜索的内容格式大、内容多需要分析后将语汇单元索引。</p>
 <p>否：不作分词处理<br>比如：商品id、订单号、身份证号等 </p>
