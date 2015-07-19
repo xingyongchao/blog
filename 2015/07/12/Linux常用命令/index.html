@@ -4,89 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Storm配置详解 | Java Hadoop Storm Spark</title>
+    <title>Linux常用命令 | Java Hadoop Storm Spark</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="dishui">
     
 
     
-    <meta name="description" content="配置项
-配置说明
-
-
-
-
-storm.zookeeper.servers
-ZooKeeper服务器列表
-
-
-storm.zookeeper.port
-ZooKeeper连接端口
-
-
-storm.local.dir
-storm使用的本地文件系统目录(必须存在并且storm进程可读写)
-
-
-storm.cluster.mode
-Storm集群运行模式([distributed\local])
-
-
-st">
+    <meta name="description" content="Mysql rpm 安装包安装顺序
+rpm -ivh perl-DBI-1.609-4.el6.i686.rpm
+rpm -ivh perl-DBD-MySQL-4.013-3.el6.i686.rpm
+rpm -Uvh openssl-1.0.1e-16.el6_5.14.i686.rpm
+rpm -Uvh mysql-libs-5.1.73-3.el6_5.i686.rpm
+rpm -ivh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Storm配置详解">
-<meta property="og:url" content="http://blog.zhoukai.xyz/2015/04/18/Storm配置详解/index.html">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="http://blog.zhoukai.xyz/2015/07/12/Linux常用命令/index.html">
 <meta property="og:site_name" content="Java Hadoop Storm Spark">
-<meta property="og:description" content="配置项
-配置说明
-
-
-
-
-storm.zookeeper.servers
-ZooKeeper服务器列表
-
-
-storm.zookeeper.port
-ZooKeeper连接端口
-
-
-storm.local.dir
-storm使用的本地文件系统目录(必须存在并且storm进程可读写)
-
-
-storm.cluster.mode
-Storm集群运行模式([distributed\local])
-
-
-st">
-<meta property="og:updated_time" content="2015-04-18T15:43:31.000Z">
+<meta property="og:description" content="Mysql rpm 安装包安装顺序
+rpm -ivh perl-DBI-1.609-4.el6.i686.rpm
+rpm -ivh perl-DBD-MySQL-4.013-3.el6.i686.rpm
+rpm -Uvh openssl-1.0.1e-16.el6_5.14.i686.rpm
+rpm -Uvh mysql-libs-5.1.73-3.el6_5.i686.rpm
+rpm -ivh">
+<meta property="og:updated_time" content="2015-07-19T16:53:50.900Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Storm配置详解">
-<meta name="twitter:description" content="配置项
-配置说明
-
-
-
-
-storm.zookeeper.servers
-ZooKeeper服务器列表
-
-
-storm.zookeeper.port
-ZooKeeper连接端口
-
-
-storm.local.dir
-storm使用的本地文件系统目录(必须存在并且storm进程可读写)
-
-
-storm.cluster.mode
-Storm集群运行模式([distributed\local])
-
-
-st">
+<meta name="twitter:title" content="Linux常用命令">
+<meta name="twitter:description" content="Mysql rpm 安装包安装顺序
+rpm -ivh perl-DBI-1.609-4.el6.i686.rpm
+rpm -ivh perl-DBD-MySQL-4.013-3.el6.i686.rpm
+rpm -Uvh openssl-1.0.1e-16.el6_5.14.i686.rpm
+rpm -Uvh mysql-libs-5.1.73-3.el6_5.i686.rpm
+rpm -ivh">
 
     
     <link rel="alternative" href="/atom.xml" title="Java Hadoop Storm Spark" type="application/atom+xml">
@@ -145,14 +94,14 @@ st">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/18/Storm配置详解/" title="Storm配置详解" itemprop="url">Storm配置详解</a>
+      <a href="/2015/07/12/Linux常用命令/" title="Linux常用命令" itemprop="url">Linux常用命令</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://blog.zhoukai.xyz/about" title="dishui" target="_blank" itemprop="author">dishui</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-18T15:17:55.000Z" itemprop="datePublished"> 发表于 2015-04-18</time>
+    <time datetime="2015-07-12T07:03:57.000Z" itemprop="datePublished"> 发表于 2015-07-12</time>
     
   </p>
 </header>
@@ -161,218 +110,33 @@ st">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql_rpm_安装包安装顺序"><span class="toc-number">1.</span> <span class="toc-text">Mysql rpm 安装包安装顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主机名"><span class="toc-number">1.1.</span> <span class="toc-text">主机名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装软件"><span class="toc-number">2.</span> <span class="toc-text">yum安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#scp"><span class="toc-number">2.1.</span> <span class="toc-text">scp</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#淘宝TFS安装"><span class="toc-number"></span> <span class="toc-text">淘宝TFS安装</span></a>
 		
 		</div>
 		
-		<table>
-<thead>
-<tr>
-<th>配置项</th>
-<th>配置说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>storm.zookeeper.servers</td>
-<td>ZooKeeper服务器列表</td>
-</tr>
-<tr>
-<td>storm.zookeeper.port</td>
-<td>ZooKeeper连接端口</td>
-</tr>
-<tr>
-<td>storm.local.dir</td>
-<td>storm使用的本地文件系统目录(必须存在并且storm进程可读写)</td>
-</tr>
-<tr>
-<td>storm.cluster.mode</td>
-<td>Storm集群运行模式([distributed\local])</td>
-</tr>
-<tr>
-<td>storm.local.mode.zmq</td>
-<td>Local模式下是否使用ZeroMQ作消息系统，如果设置为false则使用java消息系统。默认为false</td>
-</tr>
-<tr>
-<td>storm.zookeeper.root</td>
-<td>ZooKeeper中Storm的根目录位置</td>
-</tr>
-<tr>
-<td>storm.zookeeper.session.timeout</td>
-<td>客户端连接ZooKeeper超时时间</td>
-</tr>
-<tr>
-<td>storm.id</td>
-<td>运行中拓扑的id,由storm name和一个唯一随机数组成。</td>
-</tr>
-<tr>
-<td>nimbus.host</td>
-<td>nimbus服务器地址</td>
-</tr>
-<tr>
-<td>nimbus.thrift.port</td>
-<td>nimbus的thrift监听端口</td>
-</tr>
-<tr>
-<td>nimbus.childopts</td>
-<td>通过storm-deploy项目部署时指定给nimbus进程的jvm选项</td>
-</tr>
-<tr>
-<td>nimbus.task.timeout.secs</td>
-<td>心跳超时时间，超时后nimbus会认为task死掉并重分配给另一个地址。</td>
-</tr>
-<tr>
-<td>nimbus.monitor.freq.secs</td>
-<td>nimbus检查心跳和重分配任务的时间间隔.注意如果是机器宕掉nimbus会立即接管并处理。</td>
-</tr>
-<tr>
-<td>nimbus.supervisor.timeout.secs</td>
-<td>supervisor的心跳超时时间,一旦超过nimbus会认为该supervisor已死并停止为它分发新任务.</td>
-</tr>
-<tr>
-<td>nimbus.task.launch.secs</td>
-<td>task启动时的一个特殊超时设置.在启动后第一次心跳前会使用该值来临时替代nimbus.task.timeout.secs.</td>
-</tr>
-<tr>
-<td>nimbus.reassign</td>
-<td>当发现task失败时nimbus是否重新分配执行。默认为真，不建议修改。</td>
-</tr>
-<tr>
-<td>nimbus.file.copy.expiration.secs</td>
-<td>nimbus判断上传/下载链接的超时时间，当空闲时间超过该设定时nimbus会认为链接死掉并主动断开</td>
-</tr>
-<tr>
-<td>ui.port</td>
-<td>Storm UI的服务端口</td>
-</tr>
-<tr>
-<td>drpc.servers</td>
-<td>DRPC服务器列表，以便DRPCSpout知道和谁通讯</td>
-</tr>
-<tr>
-<td>drpc.port</td>
-<td>Storm DRPC的服务端口</td>
-</tr>
-<tr>
-<td>supervisor.slots.ports</td>
-<td>supervisor上能够运行workers的端口列表.每个worker占用一个端口,且每个端口只运行一个worker.通过这项配置可以调整每台机器上运行的worker数.(调整slot数/每机)</td>
-</tr>
-<tr>
-<td>supervisor.childopts</td>
-<td>在storm-deploy项目中使用,用来配置supervisor守护进程的jvm选项</td>
-</tr>
-<tr>
-<td>supervisor.worker.timeout.secs</td>
-<td>supervisor中的worker心跳超时时间,一旦超时supervisor会尝试重启worker进程.</td>
-</tr>
-<tr>
-<td>supervisor.worker.start.timeout.secs</td>
-<td>supervisor初始启动时，worker的心跳超时时间，当超过该时间supervisor会尝试重启worker。因为JVM初始启动和配置会带来的额外消耗，从而使得第一次心跳会超过supervisor.worker.timeout.secs的设定</td>
-</tr>
-<tr>
-<td>supervisor.enable</td>
-<td>supervisor是否应当运行分配给他的workers.默认为true,该选项用来进行Storm的单元测试,一般不应修改.</td>
-</tr>
-<tr>
-<td>supervisor.heartbeat.frequency.secs</td>
-<td>supervisor心跳发送频率(多久发送一次)</td>
-</tr>
-<tr>
-<td>supervisor.monitor.frequency.secs</td>
-<td>supervisor检查worker心跳的频率</td>
-</tr>
-<tr>
-<td>worker.childopts</td>
-<td>supervisor启动worker时使用的jvm选项.所有的”%ID%”字串会被替换为对应worker的标识符</td>
-</tr>
-<tr>
-<td>worker.heartbeat.frequency.secs</td>
-<td>worker的心跳发送时间间隔</td>
-</tr>
-<tr>
-<td>task.heartbeat.frequency.secs</td>
-<td>task汇报状态心跳时间间隔</td>
-</tr>
-<tr>
-<td>task.refresh.poll.secs</td>
-<td>task与其他tasks之间链接同步的频率.(如果task被重分配,其他tasks向它发送消息需要刷新连接).一般来讲，重分配发生时其他tasks会理解得到通知。该配置仅仅为了防止未通知的情况。</td>
-</tr>
-<tr>
-<td>topology.debug</td>
-<td>如果设置成true，Storm将记录发射的每条信息。</td>
-</tr>
-<tr>
-<td>topology.optimize</td>
-<td>master是否在合适时机通过在单个线程内运行多个task以达到优化topologies的目的.</td>
-</tr>
-<tr>
-<td>topology.workers</td>
-<td>执行该topology集群中应当启动的进程数量.每个进程内部将以线程方式执行一定数目的tasks.topology的组件结合该参数和并行度提示来优化性能</td>
-</tr>
-<tr>
-<td>topology.ackers</td>
-<td>topology中启动的acker任务数.Acker保存由spout发送的tuples的记录，并探测tuple何时被完全处理.当Acker探测到tuple被处理完毕时会向spout发送确认信息.通常应当根据topology的吞吐量来确定acker的数目，但一般不需要太多.当设置为0时,相当于禁用了消息可靠性,storm会在spout发送tuples后立即进行确认.</td>
-</tr>
-<tr>
-<td>topology.message.timeout.secs</td>
-<td>topology中spout发送消息的最大处理超时时间.如果一条消息在该时间窗口内未被成功ack,Storm会告知spout这条消息失败。而部分spout实现了失败消息重播功能。</td>
-</tr>
-<tr>
-<td>topology.kryo.register</td>
-<td>注册到Kryo(Storm底层的序列化框架)的序列化方案列表.序列化方案可以是一个类名,或者是com.esotericsoftware.kryo.Serializer的实现.</td>
-</tr>
-<tr>
-<td>topology.skip.missing.kryo.registrations</td>
-<td>Storm是否应该跳过它不能识别的kryo序列化方案.如果设置为否task可能会装载失败或者在运行时抛出错误.</td>
-</tr>
-<tr>
-<td>topology.max.task.parallelism</td>
-<td>在一个topology中能够允许的最大组件并行度.该项配置主要用在本地模式中测试线程数限制.</td>
-</tr>
-<tr>
-<td>topology.max.spout.pending</td>
-<td>一个spout task中处于pending状态的最大的tuples数量.该配置应用于单个task,而不是整个spouts或topology.</td>
-</tr>
-<tr>
-<td>topology.state.synchronization.timeout.secs</td>
-<td>组件同步状态源的最大超时时间(保留选项,暂未使用)</td>
-</tr>
-<tr>
-<td>topology.stats.sample.rate</td>
-<td>用来产生task统计信息的tuples抽样百分比</td>
-</tr>
-<tr>
-<td>topology.fall.back.on.java.serialization</td>
-<td>topology中是否使用java的序列化方案</td>
-</tr>
-<tr>
-<td>zmq.threads</td>
-<td>每个worker进程内zeromq通讯用到的线程数</td>
-</tr>
-<tr>
-<td>zmq.linger.millis</td>
-<td>当连接关闭时,链接尝试重新发送消息到目标主机的持续时长.这是一个不常用的高级选项,基本上可以忽略.</td>
-</tr>
-<tr>
-<td>java.library.path</td>
-<td>JVM启动(如Nimbus,Supervisor和workers)时的java.library.path设置.该选项告诉JVM在哪些路径下定位本地库.</td>
-</tr>
-</tbody>
-</table>
+		<h3 id="Mysql_rpm_安装包安装顺序">Mysql rpm 安装包安装顺序</h3><ul>
+<li><code>rpm -ivh perl-DBI-1.609-4.el6.i686.rpm</code></li>
+<li><code>rpm -ivh perl-DBD-MySQL-4.013-3.el6.i686.rpm</code></li>
+<li><code>rpm -Uvh openssl-1.0.1e-16.el6_5.14.i686.rpm</code></li>
+<li><code>rpm -Uvh mysql-libs-5.1.73-3.el6_5.i686.rpm</code></li>
+<li><code>rpm -ivh mysql-5.1.73-3.el6_5.i686.rpm mysql-server-5.1.73-3.el6_5.i686.rpm</code></li>
+</ul>
+<p>va<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/local/soft/java/jdk1.7.0_55&#10;PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<h4 id="主机名">主机名</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#20462;&#25913;&#20027;&#26426;&#21517;&#10;vim /etc/sysconfig/network&#10;//&#20462;&#25913;&#20027;&#26426;&#21517; IP &#26144;&#23556;&#10;vim /etc/hosts&#10;//&#20027;&#26426;&#21517;&#29983;&#25928;&#10;sudo hostname</span><br></pre></td></tr></table></figure>
+<h3 id="yum安装软件">yum安装软件</h3><h4 id="scp">scp</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-clients</span><br></pre></td></tr></table></figure>
+<h2 id="淘宝TFS安装">淘宝TFS安装</h2><ul>
+<li>Linux 64位<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/soft/tb/ --disable-readline --without-tcmalloc</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Storm/">Storm</a>
-</div>
-
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Storm/">Storm</a>
+  <span></span> <a href="/tags/Linux/">Linux</a>
   </div>
 
 </div>
@@ -381,7 +145,7 @@ st">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://blog.zhoukai.xyz/2015/04/18/Storm配置详解/" data-title="Storm配置详解 | Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
+	  <div data-url="http://blog.zhoukai.xyz/2015/07/12/Linux常用命令/" data-title="Linux常用命令 | Java Hadoop Storm Spark" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -395,18 +159,18 @@ st">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/04/19/FreeMarker/" title="FreeMarker">
+ <a href="/2015/07/12/mysql命令/" title="mysql命令">
   <strong>上一篇：</strong><br/>
   <span>
-  FreeMarker</span>
+  mysql命令</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/04/12/Pig/"  title="Pig">
+<a href="/2015/07/12/Netty/"  title="">
  <strong>下一篇：</strong><br/> 
- <span>Pig
+ <span>(no title)
 </span>
 </a>
 </div>
@@ -421,7 +185,7 @@ st">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql_rpm_安装包安装顺序"><span class="toc-number">1.</span> <span class="toc-text">Mysql rpm 安装包安装顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主机名"><span class="toc-number">1.1.</span> <span class="toc-text">主机名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装软件"><span class="toc-number">2.</span> <span class="toc-text">yum安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#scp"><span class="toc-number">2.1.</span> <span class="toc-text">scp</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#淘宝TFS安装"><span class="toc-number"></span> <span class="toc-text">淘宝TFS安装</span></a>
  
   </div>
 
